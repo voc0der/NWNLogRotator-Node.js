@@ -1,2 +1,2 @@
 # NWN-Log-Rotator
-A nodeJS log rotator for the Neverwinter Nights with coloring, parsing, and transforming.
+The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. An example of this in action is here
