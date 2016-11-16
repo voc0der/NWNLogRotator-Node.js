@@ -2,7 +2,7 @@
 The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read.
 <br />
 <br />
-The code is accessible using NodeJS (in a CMD prompt) with the following plugins: "through"
+The code is accessible using NodeJS (in a command prompt) with the following plugins:
 <br />
 ```
 npm install through
