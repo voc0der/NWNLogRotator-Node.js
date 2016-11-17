@@ -11,3 +11,19 @@ npm install filequeue
 ```
 <br />
 An example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/v2/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
+
+Sample Bat to Rotate Logs
+```batch
+@echo off
+echo Loading Amia config..
+xcopy /y "K:\NeverwinterNights\NWN\cfg\amia\nwnplayer.ini" "K:\NeverwinterNights\NWN\nwnplayer.ini"
+echo Done!
+echo *** Launching Amia A ***
+START /w /d "K:\NeverwinterNights\NWN\" nwmain.exe +connect 185.29.203.11:5121
+echo *** Neverwinter Nights Terminated ***
+echo Processing Logs...
+cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
+echo Cleaning Amia Dropbox...
+START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat" 
+exit
+```
