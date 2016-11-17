@@ -9,9 +9,8 @@ npm install through
 npm install stream-replace
 npm install filequeue
 ```
-<br />
-An example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/v2/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 
+<br />
 Sample Bat to Rotate Logs
 ```batch
 @echo off
@@ -27,3 +26,6 @@ echo Cleaning Amia Dropbox...
 START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat" 
 exit
 ```
+
+<br />
+An example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/v2/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
