@@ -34,7 +34,7 @@ Sample Bat to Loop Delete Smaller Log Files
 pushd "C:\Users\MyUserName\Dropbox\Public\Logs"
 for %%j in (*) do if %%~zj lss 575 del "%%~j"
 popd
-```batch
+```
 
 
 An example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/v2/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
