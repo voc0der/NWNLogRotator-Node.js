@@ -52,10 +52,9 @@ exit
 ```batch
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
 ```
-<br />
 
 <br />
-Sample Bat to Loop Delete Smaller Log Files
+If you are looking to automatically delete logs that are below a certain size (575 bytes), this batch may help with cleaning up.
 ```batch
 @echo off
 pushd "C:\Users\MyUserName\Dropbox\Public\Logs"
