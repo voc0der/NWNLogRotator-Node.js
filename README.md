@@ -44,6 +44,8 @@ START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat"
 exit
 ```
 
+* Note that I use hstart64.exe as a helper. It can be downloaded <a href="http://www.ntwind.com/blog/hstart-x64.html">here</a>.
+
 <br /> To simply test how this thing works, you can try making a one line batch script:
 ```batch
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
