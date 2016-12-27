@@ -27,15 +27,20 @@ Here is a sample batch file to Rotate Logs. Keep in mind, my set up is a bit mor
 ```batch
 @echo off
 echo Loading Amia config..
+:: This will copy the nwnplayer.ini from cfg\amia to the NWN folder. Good for multiple account names and shortcuts.
 xcopy /y "K:\NeverwinterNights\NWN\cfg\amia\nwnplayer.ini" "K:\NeverwinterNights\NWN\nwnplayer.ini"
 echo Done!
+:: Start the Neverwinter Nights Client and Automatically connect to Amia A.
 echo *** Launching Amia A ***
 START /w /d "K:\NeverwinterNights\NWN\" nwmain.exe +connect 185.29.203.11:5121
 echo *** Neverwinter Nights Terminated ***
 echo Processing Logs...
+:: Run the log parser in NodeJS now..
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
 echo Cleaning Amia Dropbox...
+:: Remove the stuff from dropbox
 START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat" 
+:: Cleanly exit the batch
 exit
 ```
 
