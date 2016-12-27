@@ -20,11 +20,7 @@ Once you are done that, navigate to the latest version folder and grab sinfarLog
 <br />
 Lastly, make sure the file PATHs make sense to YOUR filesystem. K:\NeverwinterNights\NWN... likely won't exist for you. It might be C:\Program Files (x86)\GOG\Neverwinter Nights\
 
-<br />
-Open amiaLogRotator.js/sinfarLogRotator.js and change the "source" and "destination" to match YOURS.
-<br />
-
-<br />
+Open amiaLogRotator.js/sinfarLogRotator.js in notepad and change the "source" and "destination" variables to match YOUR filesystem.
 <br /> To simply test how this thing works, you can try making a one line batch script:
 ```batch
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
