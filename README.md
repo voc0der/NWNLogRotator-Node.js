@@ -14,12 +14,12 @@ npm install filequeue
 
 Typing these three commands will ensure that the dependencies are installed properly and that the script will work.
 <br />
-Once you are done that, navigate to the latest version folder and grab Sinfar.js or Amia.js
+Once you are done that, navigate to the latest version folder and grab sinfarLogRotator.js or amiaLogRotator.js
 <br />
 Lastly, make sure the file PATHs make sense to YOUR filesystem. K:\NeverwinterNights\NWN... likely won't exist for you. It might be C:\Program Files (x86)\GOG\Neverwinter Nights\
 
 <br />
-Open Sinfar/Amia.js and change the "source" and "destination" to match YOURS.
+Open amiaLogRotator.js/sinfarLogRotator.js and change the "source" and "destination" to match YOURS.
 <br />
 
 <br />
