@@ -2,7 +2,9 @@
 The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read.
 <br />
 <br />
-The code is accessible using NodeJS (in a command prompt) with the following plugins:
+To begin, please install <a href="https://nodejs.org/en/">NodeJS</a> to the default location if it is not already. <br />
+
+Open a command prompt, and ensure these NodeJS plugins are up-to-date. (Start > Run > Cmd > Enter)
 <br />
 ```
 npm install through
@@ -10,8 +12,18 @@ npm install stream-replace
 npm install filequeue
 ```
 
+Typing these three commands will ensure that the dependencies are installed properly and that the script will work.
 <br />
-Sample Bat to Rotate Logs
+Once you are done that, navigate to the latest version folder and grab Sinfar.js or Amia.js
+<br />
+Lastly, make sure the file PATHs make sense to YOUR filesystem. K:\NeverwinterNights\NWN... likely won't exist for you. It might be C:\Program Files (x86)\GOG\Neverwinter Nights\
+
+<br />
+Open Sinfar/Amia.js and change the "source" and "destination" to match YOURS.
+<br />
+
+<br />
+Here is a sample batch file to Rotate Logs. Keep in mind, my set up is a bit more advanced than you might need yours to be.
 ```batch
 @echo off
 echo Loading Amia config..
@@ -26,6 +38,12 @@ echo Cleaning Amia Dropbox...
 START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat" 
 exit
 ```
+
+<br /> To simply test how this thing works, you can try making a one line batch script:
+```batch
+cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
+```
+<br />
 
 <br />
 Sample Bat to Loop Delete Smaller Log Files
