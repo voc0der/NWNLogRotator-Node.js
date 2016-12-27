@@ -25,7 +25,12 @@ Open amiaLogRotator.js/sinfarLogRotator.js and change the "source" and "destinat
 <br />
 
 <br />
-Here is a sample batch file to Rotate Logs. Keep in mind, my set up is a bit more advanced than you might need yours to be.
+<br /> To simply test how this thing works, you can try making a one line batch script:
+```batch
+cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
+```
+
+Here is a sample batch file to Rotate Logs. Keep in mind, my set up is a bit more advanced than you might need yours to be. 
 ```batch
 @echo off
 echo Loading Amia config..
@@ -48,13 +53,9 @@ exit
 
 * Note that I use hstart64.exe as a helper. It can be downloaded <a href="http://www.ntwind.com/blog/hstart-x64.html">here</a>.
 
-<br /> To simply test how this thing works, you can try making a one line batch script:
-```batch
-cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
-```
 
 <br />
-If you are looking to automatically delete logs that are below a certain size (575 bytes), this batch may help with cleaning up.
+Finally, if you are looking to automatically delete logs that are below a certain size (575 bytes), this batch may help with cleaning up.
 ```batch
 @echo off
 pushd "C:\Users\MyUserName\Dropbox\Public\Logs"
