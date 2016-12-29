@@ -12,7 +12,6 @@ npm install stream-replace
 npm install filequeue
 ```
 <br />
-
 If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
 
 Typing these three commands will ensure that the dependencies are installed properly and that the script will work.
