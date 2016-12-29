@@ -4,13 +4,16 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 <br />
 To begin, please install <a href="https://nodejs.org/en/">NodeJS</a> to the default location if it is not already. <br />
 
-Open a command prompt, and ensure these NodeJS plugins are up-to-date. (Start > Run > Cmd > Enter)
+Open a command prompt (Start > Run > Cmd > Enter), and ensure these NodeJS plugins are up-to-date. 
 <br />
 ```
 npm install through
 npm install stream-replace
 npm install filequeue
 ```
+<br />
+
+If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
 
 Typing these three commands will ensure that the dependencies are installed properly and that the script will work.
 <br /><br />
