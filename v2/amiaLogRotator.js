@@ -1,5 +1,5 @@
 // Author: RaveN
-// Date: 9/24/2016
+// Date: 12/29/2016
 // Version 2.0
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer.
 
@@ -100,6 +100,7 @@ fq.stat( source, function( error, stat ) {
 			logTitle = "";
 			// loop -> transform
 			this.queue(dataFilter);
+		});
 		
 		var reader = fq.createReadStream(source);
 		var writer = fq.createWriteStream(destination);
