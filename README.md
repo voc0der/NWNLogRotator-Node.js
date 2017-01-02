@@ -8,7 +8,7 @@ Open a command prompt (Start > Run > Cmd > Enter)
 
 Type cd C:\...NeverwinterNightsPath\ (use yours)
 
-Ensure these NodeJS plugins are installed.
+Ensure these NodeJS plugins are installed in that path by typing these commands.
 <br />
 ```
 npm install stream-replace
