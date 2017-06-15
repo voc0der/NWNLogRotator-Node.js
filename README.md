@@ -46,9 +46,6 @@ echo *** Neverwinter Nights Terminated ***
 echo Processing Logs...
 :: Run the log parser in NodeJS now..
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
-echo Cleaning Amia Dropbox...
-:: Prune the stuff from dropbox under 575 bytes
-START /w hstart64.exe /NOCONSOLE "K:\NeverwinterNights\NWN\cleandropbox.bat" 
 :: Cleanly exit the batch
 exit
 ```
