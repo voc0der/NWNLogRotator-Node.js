@@ -15,7 +15,7 @@ var fq = new FileQueue(100);
 var today = new Date();
 
 // Sample Filename: NWNLog_2013_04_23_192504
-var monthStr = today.getMonth().toString();
+var monthStr = (today.getMonth() + 1).toString();
 if( monthStr.length == 1) {
 	
 	monthStr = "0" + monthStr;

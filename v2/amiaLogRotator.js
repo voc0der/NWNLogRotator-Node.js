@@ -1,6 +1,6 @@
 // Author: RaveN
 // Date: 12/29/2016
-// Version 2.0
+// Version 2.1
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer.
 
 var fs = require( 'fs' );
@@ -15,7 +15,7 @@ var fq = new FileQueue(100);
 var today = new Date();
 
 // Sample Filename: NWNLog_2013_04_23_192504
-var monthStr = today.getMonth().toString();
+var monthStr = (today.getMonth() + 1).toString();
 if( monthStr.length == 1) {
 	
 	monthStr = "0" + monthStr;
