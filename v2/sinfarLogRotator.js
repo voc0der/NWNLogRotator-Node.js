@@ -49,7 +49,6 @@ var fileName = "NWNLog_" + dateString + ".html";
 var source = "K:/NeverwinterNights/NWN/Logs/nwclientLog1.txt";
 var destination = "C:/Users/Selene/Dropbox/Public/Sinfar/Logs/" + fileName;
 
-
 fq.stat( source, function( error, stat ) {
 	if( error ) {
 		console.error( "Error reading source file.", error );
@@ -116,3 +115,18 @@ fq.stat( source, function( error, stat ) {
 		.pipe(writer);
 	}				
 });
+
+let Client = require('ssh2-sftp-client');
+let sftp = new Client();
+sftp.connect({
+    host: 'home671250817.1and1-data.host',
+    port: '22',
+    username: 'u88445101',
+    password: 'az!@9057Frasseto'
+}).catch((err) => {
+    console.log(err, 'catch error');
+});
+
+sftp.put(destination, '/misc/sinfar_logs/' + fileName);
+
+process.exit();

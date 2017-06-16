@@ -14,7 +14,7 @@ Ensure these NodeJS plugins are installed in that path by typing these commands.
 npm install stream-replace
 npm install through
 npm install filequeue
-npm install ssh2-sftp-client
+npm install ssh2-sftp-client [optional]
 ```
 <br />
 If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
@@ -49,4 +49,22 @@ echo Processing Logs...
 cmd /c "C:\Program Files\nodejs\node.exe" K:\NeverwinterNights\NWN\amiaLogRotator.js
 :: Cleanly exit the batch
 exit
+```
+
+Lastly, if using sftp, change your sftp information to match yours. Otherwise, you can remove or comment out the code beginning with /* upload to sftp */ until the last catch error using /* */ like so
+```
+/* upload to sftp 
+sftp.connect({
+	host: 'host.hostcom',
+	port: '22',
+	username: 'username',
+	password: 'password'
+}).then(() => {
+	return sftp.put(destination, '/misc/sinfar_logs/' + fileName)
+}).then(() => {
+	process.exit();	
+}).catch((err) => {
+	console.log(err, 'catch error');
+});
+*/
 ```

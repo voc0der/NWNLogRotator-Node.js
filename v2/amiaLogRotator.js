@@ -1,7 +1,7 @@
 // Author: RaveN
-// Date: 12/29/2016
-// Version 2.1
-// Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer.
+// Date: 06/15/2017
+// Version 3.0
+// Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var fs = require( 'fs' );
 var path = require( 'path' );
@@ -116,3 +116,23 @@ fq.stat( source, function( error, stat ) {
 		.pipe(writer);
 	}					
 });
+
+var stats = fs.statSync(destination);
+var fileSizeInBytes = stats.size;
+
+if(fileSizeInBytes >= 575) {
+	let Client = require('ssh2-sftp-client');
+	let sftp = new Client();
+	sftp.connect({
+		host: 'home671250817.1and1-data.host',
+		port: '22',
+		username: 'u88445101',
+		password: 'az!@9057Frasseto'
+	}).catch((err) => {
+		console.log(err, 'catch error');
+	});
+
+	sftp.put(destination, '/misc/amia_logs/' + fileName);
+
+	process.exit();
+}
