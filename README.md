@@ -25,7 +25,7 @@ npm install ssh2-sftp-client
 
 5) Open amiaLogRotator.js and/or sinfarLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
 
-6) If using sftp, change your sftp information to match yours. Otherwise, you can remove or comment out the code beginning with /* upload to sftp */ until the last catch error using /* */ as shown below.
+6) If using sftp, change your sftp information to match yours. Otherwise, you can remove or comment out the code as shown below.
 ```
 /* upload to sftp 
 sftp.connect({
@@ -48,7 +48,7 @@ sftp.connect({
 cmd /c "C:\Program Files\nodejs\node.exe" C:\Program Files (x86)\GOG\Neverwinter Nights\amiaLogRotator.js
 ```
 
-**Sample NWN Launcher:** Might be a little more complicated than you need. I left xcopy line there optionally, in case you play on multiple servers and different accounts and wanted to automate that!
+**Sample NWN Launcher:** Might be a little more complicated than you need. The *xcopy* line is there optionally, in case you play on multiple servers and different accounts and wanted to automate that!
 ```batch
 @echo off
 echo Loading Amia config..
