@@ -1,7 +1,7 @@
 // Author: RaveN
-// Date: 12/29/2016
-// Version 2.1
-// Purpose: NodeJS Neverwinter Nights Log rotator for bulk log output.
+// Date: 06/15/2017
+// Version 3.0
+// Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var fs = require( 'fs' );
 var path = require( 'path' );
@@ -11,8 +11,8 @@ var through = require('through');
 var FileQueue = require('filequeue');
 var fq = new FileQueue(100);
   
-var source =  "C:/Users/Selene/Dropbox/Public/Amia/Logs/";
-var destination = "C:/Users/Selene/Dropbox/Public/Amia/Logs/HTML";
+var source =  "C:/Path/Amia/Logs/";
+var destination = "C:/Path/Amia/Logs/HTML";
 
 fs.readdir( source, function( err, files ) {
 	if( err ) {
@@ -47,6 +47,10 @@ fs.readdir( source, function( err, files ) {
 					.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<font color=\'#B1A2BD\'>[')
 					.replace(/:[0-9]{2}]{1}/g, ']</font>')
 					// additional patterns
+					.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
+					.replace(/.+?(?=.*)Your public CDKEY is FFUNHEU9\r\n/g, '')
+					.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
+					.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 					.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
 					.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
 					.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
@@ -58,7 +62,7 @@ fs.readdir( source, function( err, files ) {
 					.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
 					.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
 					.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
-					.replace(/.+?(?=.*)Experience Points Gained:  200\r\n/g, '')
+					.replace(/.+?(?=.*)Experience Points Gained: [0-9]*\r\n/g, '')
 					.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
 					.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
 					// actors
