@@ -80,6 +80,7 @@ if(fileSizeInBytes >= 575) {
 				// additional patterns
 				.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
 				.replace(/.+?(?=.*)Your public CDKEY is FFUNHEU9\r\n/g, '')
+				.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
 				.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 				.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
 				.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
