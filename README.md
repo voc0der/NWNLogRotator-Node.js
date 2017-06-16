@@ -9,20 +9,19 @@ Before attempting to use this script, please install <a href="https://nodejs.org
 2) Navigate to the path of **your** NWN install in cmd.exe [ex. cd C:\Program Files (x86)\GOG\Neverwinter Nights\] 
 
 3) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
-<br />
+
 ```
 npm install stream-replace
 npm install through
 npm install filequeue
 npm install ssh2-sftp-client 
+
 ```
-<br />
 
 **Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp.
 
 **Important:** If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
 
-<br /><br />
 4) Retrieve the latest version folder versions of sinfarLogRotator.js or amiaLogRotator.js here on this repository!
 <br /><br />
 5) Open amiaLogRotator.js and/or sinfarLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
