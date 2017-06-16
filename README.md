@@ -19,7 +19,7 @@ npm install ssh2-sftp-client
 
 **Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp.
 
-**Important:** If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
+**Important:** If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 4) Retrieve the latest version folder versions of sinfarLogRotator.js or amiaLogRotator.js here on this repository!
 
