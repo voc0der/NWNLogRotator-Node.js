@@ -22,10 +22,8 @@ npm install ssh2-sftp-client
 **Important:** If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
 
 4) Retrieve the latest version folder versions of sinfarLogRotator.js or amiaLogRotator.js here on this repository!
-<br /><br />
-5) Open amiaLogRotator.js and/or sinfarLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
 
-<br /> 
+5) Open amiaLogRotator.js and/or sinfarLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
 
 6) If using sftp, change your sftp information to match yours. Otherwise, you can remove or comment out the code beginning with /* upload to sftp */ until the last catch error using /* */ as shown below.
 ```
