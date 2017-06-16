@@ -49,7 +49,7 @@ var dateString = today.getFullYear() + "_" + monthStr + "_" + dayStr + "_" + hou
 var fileName = "NWNLog_" + dateString + ".html";
   
 var source = "K:/NeverwinterNights/NWN/Logs/nwclientLog1.txt";
-var destination = "C:/Users/Selene/Dropbox/Public/Amia/Logs/" + fileName;
+var destination = "C:/Destination/Amia/Logs/" + fileName;
 
 var fileStats = fs.statSync(source);
 var fileSizeInBytes = fileStats.size;
@@ -79,6 +79,9 @@ if(fileSizeInBytes >= 575) {
 				.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<font color=\'#B1A2BD\'>[')
 				.replace(/:[0-9]{2}]{1}/g, ']</font>')
 				// additional patterns
+				.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
+				.replace(/.+?(?=.*)Your public CDKEY is FFUNHEU9\r\n/g, '')
+				.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 				.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
 				.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
 				.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
@@ -90,7 +93,7 @@ if(fileSizeInBytes >= 575) {
 				.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
 				.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
 				.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
-				.replace(/.+?(?=.*)Experience Points Gained:  200\r\n/g, '')
+				.replace(/.+?(?=.*)Experience Points Gained: [0-9]*\r\n/g, '')
 				.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
 				.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
 				// actors
