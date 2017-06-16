@@ -6,7 +6,7 @@ Before attempting to use this script, please install <a href="https://nodejs.org
 
 1) Open a command prompt (Start > Run > Cmd > Enter).
 
-2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe)
+2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```
 cd C:\Program Files (x86)\GOG\Neverwinter Nights\
 ```
@@ -16,11 +16,13 @@ cd C:\Program Files (x86)\GOG\Neverwinter Nights\
 ```
 npm install stream-replace
 npm install through
-npm install filequeue
-npm install ssh2-sftp-client 
+npm install filequeue 
 ```
 
-**Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp.
+**Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp. If you **are using sftp include this line.
+```
+npm install ssh2-sftp-client
+```
 
 **Important:** If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
