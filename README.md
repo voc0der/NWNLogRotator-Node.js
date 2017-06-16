@@ -15,7 +15,6 @@ npm install stream-replace
 npm install through
 npm install filequeue
 npm install ssh2-sftp-client 
-
 ```
 
 **Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp.
