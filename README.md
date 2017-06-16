@@ -19,7 +19,7 @@ npm install through
 npm install filequeue 
 ```
 
-**Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp. If you **are using sftp include this line.
+**Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp. If you **are** using sftp include this line.
 ```
 npm install ssh2-sftp-client
 ```
