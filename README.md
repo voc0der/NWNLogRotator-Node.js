@@ -53,7 +53,7 @@ sftp.connect({
 cmd /c "C:\Program Files\nodejs\node.exe" C:\Program Files (x86)\GOG\Neverwinter Nights\amiaLogRotator.js
 ```
 
-**Sample NWN Launcher:** Might be a little more complicated than you need. The *xcopy* line is there optionally, in case you play on multiple servers and different accounts and wanted to automate that!
+**Sample_NWN_Launcher.bat:** Might be a little more complicated than you need. The *xcopy* line is there optionally, in case you play on multiple servers and different accounts and wanted to automate that!
 ```batch
 @echo off
 echo Loading Amia config..
