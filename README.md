@@ -6,7 +6,10 @@ Before attempting to use this script, please install <a href="https://nodejs.org
 
 1) Open a command prompt (Start > Run > Cmd > Enter).
 
-2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe) [ex. cd C:\Program Files (x86)\GOG\Neverwinter Nights\].
+2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe)
+```
+cd C:\Program Files (x86)\GOG\Neverwinter Nights\
+```
 
 3) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
 
