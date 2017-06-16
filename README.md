@@ -2,24 +2,26 @@
 The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. A very basic and crude example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/v2/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
-To begin, please install <a href="https://nodejs.org/en/">NodeJS</a> to the default location if it is not already. <br />
+Before attempting to use this script, please install <a href="https://nodejs.org/en/">node.js</a> to the default location if it is not already. <br />
 
-Open a command prompt (Start > Run > Cmd > Enter) 
+1) Open a command prompt (Start > Run > Cmd > Enter) 
 
-Type cd C:\...NeverwinterNightsPath\ (use yours)
+2) Navigate to the path of **your** NWN install in cmd.exe [ex. cd C:\Program Files (x86)\GOG\Neverwinter Nights\ ] 
 
-Ensure these Node.JS plugins are installed <u>in that path above</u> by typing these commands.
+3) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
 <br />
 ```
 npm install stream-replace
 npm install through
 npm install filequeue
-npm install ssh2-sftp-client [optional]
+
+[*optional if using sftp*]
+npm install ssh2-sftp-client 
 ```
 <br />
-If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
+**Important:** If these commands fail, try opening the command prompt as administrator and trying again. (Right click the shortcut in the start menu > Run As Administrator)
 
-Typing these three commands will ensure that the dependencies are installed properly and that the script will work.
+**Note:** npm is the node package manager, and those are the dependencies that this script needs to run.
 <br /><br />
 Once you are done that, navigate to the latest version folder here on github above and grab sinfarLogRotator.js or amiaLogRotator.js or maybe both!
 <br /><br />
