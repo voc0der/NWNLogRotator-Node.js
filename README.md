@@ -4,9 +4,9 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 <br />
 Before attempting to use this script, please install <a href="https://nodejs.org/en/">node.js</a> to the default location if it is not already. <br />
 
-1) Open a command prompt (Start > Run > Cmd > Enter) 
+1) Open a command prompt (Start > Run > Cmd > Enter).
 
-2) Navigate to the path of **your** NWN install in cmd.exe [ex. cd C:\Program Files (x86)\GOG\Neverwinter Nights\] 
+2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe) [ex. cd C:\Program Files (x86)\GOG\Neverwinter Nights\].
 
 3) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
 
