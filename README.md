@@ -26,9 +26,9 @@ npm install ssh2-sftp-client
 
 **Important:** If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-4) Retrieve the latest version folder versions of sinfarLogRotator.js or amiaLogRotator.js here on this repository.
+4) Retrieve the latest RavenLogRotator.js here on this repository.
 
-5) Open amiaLogRotator.js and/or sinfarLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
+5) Open RavenLogRotator.js in a text editor like Notepad, and change the "source" and "destination" variables **to match your path**.
 
 6) If using sftp, change your sftp information to match yours. Otherwise, you can remove or comment out the code as shown below.
 ```
@@ -50,7 +50,7 @@ sftp.connect({
 
 **Testing:** As a simple test, you can try making a one line batch script:
 ```batch
-cmd /c "C:\Program Files\nodejs\node.exe" C:\Program Files (x86)\GOG\Neverwinter Nights\amiaLogRotator.js
+cmd /c "C:\Program Files\nodejs\node.exe" C:\Program Files (x86)\GOG\Neverwinter Nights\RavenLogRotator.js
 ```
 
 **Sample_NWN_Launcher.bat:** Might be a little more complicated than you need. The *xcopy* line is there optionally, in case you play on multiple servers and different accounts and wanted to automate that!

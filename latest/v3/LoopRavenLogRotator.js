@@ -1,7 +1,7 @@
 // Author: RaveN
-// Date: 06/15/2017
-// Version 3.0
-// Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
+// Date: 06/16/2017
+// Version 3.1
+// Purpose: Looping NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var fs = require( 'fs' );
 var path = require( 'path' );
@@ -11,8 +11,8 @@ var through = require('through');
 var FileQueue = require('filequeue');
 var fq = new FileQueue(100);
   
-var source =  "C:/Path/Amia/Logs/";
-var destination = "C:/Path/Amia/Logs/HTML";
+var source =  "C:/Path to Logs/";
+var destination = "C:/Path to Destination HTML Logs/";
 
 fs.readdir( source, function( err, files ) {
 	if( err ) {
@@ -48,7 +48,6 @@ fs.readdir( source, function( err, files ) {
 					.replace(/:[0-9]{2}]{1}/g, ']</font>')
 					// additional patterns
 					.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
-					.replace(/.+?(?=.*)Your public CDKEY is FFUNHEU9\r\n/g, '')
 					.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
 					.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 					.replace(/.+?(?=.*)has left as a player..\r\n/g, '')

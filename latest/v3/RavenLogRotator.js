@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 06/15/2017
-// Version 3.0
+// Date: 06/16/2017
+// Version 3.1
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var fs = require( 'fs' );
@@ -18,38 +18,26 @@ var today = new Date();
 
 // Sample Filename: NWNLog_2013_04_23_192504
 var monthStr = (today.getMonth() + 1).toString();
-if( monthStr.length == 1) {
-	
-	monthStr = "0" + monthStr;
-}
-var dayStr = today.getDate().toString();
-if( dayStr.length == 1) {
-	
-	dayStr = "0" + dayStr;
-}
-var hourStr = today.getHours().toString();
-if( hourStr.length == 1) {
-	
-	hourStr = "0" + hourStr;
+if( monthStr.length == 1) monthStr = "0" + monthStr;
 
-}
+var dayStr = today.getDate().toString();
+if( dayStr.length == 1) dayStr = "0" + dayStr;
+
+var hourStr = today.getHours().toString();
+if( hourStr.length == 1) hourStr = "0" + hourStr;
+
 var minuteStr = today.getMinutes().toString();
-if( minuteStr.length == 1) {
-	
-	minuteStr = "0" + minuteStr;
-}
+if( minuteStr.length == 1) minuteStr = "0" + minuteStr;
+
 var secondStr = today.getSeconds().toString();
-if( secondStr.length == 1) {
-	
-	secondStr = "0" + secondStr;
-}
+if( secondStr.length == 1) secondStr = "0" + secondStr;
 
 var dateString = today.getFullYear() + "_" + monthStr + "_" + dayStr + "_" + hourStr + minuteStr + secondStr;
 
 var fileName = "NWNLog_" + dateString + ".html";
   
-var source = "K:/NeverwinterNights/NWN/Logs/nwclientLog1.txt";
-var destination = "C:/Destination/Sinfar/Logs/" + fileName;
+var source = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt";
+var destination = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/" + fileName;
 
 var fileStats = fs.statSync(source);
 var fileSizeInBytes = fileStats.size;
@@ -57,6 +45,7 @@ var fileSizeInBytes = fileStats.size;
 if(fileSizeInBytes >= 575) {
 	
 	fq.stat( source, function( error, stat ) {
+
 		if( error ) {
 			console.error( "Error reading source file.", error );
 			return;
@@ -64,7 +53,7 @@ if(fileSizeInBytes >= 575) {
 
 		if( stat.isFile() ) {	
 			
-			var logTitle = "<h4>[<font color='#03FFFF'>Sinfar Log</font>]" 
+			var logTitle = "<h4>[<font color='#EEBB33'>Log</font>]" 
 					+ " <font color='#8F7FFF'>Date/Time</font>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
 					+ "</h4>";
 			var preLog = '<html><body bgColor=\'#000000\' style=\'font-family: Tahoma, Geneva, sans-serif;\'><font color=\'#FFFFFF\'>';
@@ -79,7 +68,6 @@ if(fileSizeInBytes >= 575) {
 				.replace(/:[0-9]{2}]{1}/g, ']</font>')
 				// additional patterns
 				.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
-				.replace(/.+?(?=.*)Your public CDKEY is FFUNHEU9\r\n/g, '')
 				.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
 				.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 				.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
@@ -115,7 +103,7 @@ if(fileSizeInBytes >= 575) {
 			var reader = fq.createReadStream(source);
 			var writer = fq.createWriteStream(destination);
 			
-			/* 
+			/* debugger
 			reader
 			.pipe(filterLogs)
 			.pipe(process.stdout);
@@ -127,17 +115,17 @@ if(fileSizeInBytes >= 575) {
 
 			/* upload to sftp */
 			sftp.connect({
-				host: 'host.hostcom',
+				host: 'host.hostname.com',
 				port: '22',
 				username: 'username',
 				password: 'password'
 			}).then(() => {
-				return sftp.put(destination, '/misc/sinfar_logs/' + fileName)
+				return sftp.put(destination, '/logs/' + fileName)
 			}).then(() => {
 				process.exit();	
 			}).catch((err) => {
 				console.log(err, 'catch error');
 			});
-		}				
+		}					
 	});
 }
