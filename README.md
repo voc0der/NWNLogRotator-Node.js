@@ -56,8 +56,9 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 exit
 ```
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. *** This method requires you to run the batch as administrator. ***
-```
+```batch
 @echo off
+echo *** Launching Server ***
 START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect 127.0.0.1:5121
 :loop
 timeout /t 10 /nobreak > nul
