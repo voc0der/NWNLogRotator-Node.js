@@ -46,20 +46,24 @@ by default, it might not work with your settings. The following flags are access
 ```
 
 **Sample_NWN_Launcher.bat:** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
-Note: The *xcopy* line is there optionally, in case you play on multiple servers and different accounts and wanted to automate that!
 ```batch
 @echo off
-echo Loading Amia config..
-:: This will copy the nwnplayer.ini from cfg\amia to the NWN folder. Good for multiple account names and shortcuts.
-xcopy /y "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\cfg\amia\nwnplayer.ini" "C:\Program Files (x86)\GOG\Neverwinter Nights\nwnplayer.ini"
-echo Done!
-:: Start the Neverwinter Nights Client and Automatically connect to Amia A.
-echo *** Launching Amia A ***
-START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" nwmain.exe +connect 185.29.203.11:5121
+echo *** Launching Server ***
+START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" nwmain.exe +connect 127.0.0.1:5121
 echo *** Neverwinter Nights Terminated ***
 echo Processing Logs...
-:: Run the log parser in NodeJS now..
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
-:: Cleanly exit the batch
 exit
 ```
+If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. *** This method requires you to run the batch as administrator. ***
+```
+@echo off
+START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect 127.0.0.1:5121
+:loop
+timeout /t 10 /nobreak > nul
+tasklist /fi "imagename eq nwmain.exe" |find ":" > nul
+if errorlevel 1 goto loop
+node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
+exit
+```
+Tip: If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts run with Administrative Priviledges.
