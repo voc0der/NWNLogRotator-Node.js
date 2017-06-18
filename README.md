@@ -55,7 +55,8 @@ echo Processing Logs...
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 exit
 ```
-If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. *** This method requires you to run the batch as administrator. ***
+If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
+**This method requires you to run the batch as administrator.**
 ```batch
 @echo off
 echo *** Launching Server ***
