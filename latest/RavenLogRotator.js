@@ -95,6 +95,8 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 	}
 }
 
+if(upload_file == true && (sftp_hostname == "" || sftp_username == "" || sftp_password == "" || sftp_port == "") ) stopAndShowValidOptions();
+
 var fs = require( 'fs' );
 var path = require( 'path' );
 var replace = require('stream-replace');
@@ -137,7 +139,7 @@ fq.stat( source, function( error, stat ) {
 
 	if( stat.isFile() ) {	
 		
-		var logTitle = "<h4>[<font color='#EEBB33'>Log</font>]" 
+		var logTitle = "<h4>[<font color='#EEBB33'>Server Log</font>]" 
 				+ " <font color='#8F7FFF'>Date/Time</font>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
 				+ "</h4>";
 		var preLog = '<html><body bgColor=\'#000000\' style=\'font-family: Tahoma, Geneva, sans-serif;\'><font color=\'#FFFFFF\'>';
@@ -185,14 +187,13 @@ fq.stat( source, function( error, stat ) {
 		});
 		
 		var reader = fq.createReadStream(source);
-		var writer = fq.createWriteStream(destination);
-		
-		/* DEBUGGER
+		/* DEBUGGER 
 		reader
 		.pipe(filterLogs)
 		.pipe(process.stdout);
 		*/
 		
+		var writer = fq.createWriteStream(destination);
 		reader
 		.pipe(filterLogs)
 		.pipe(writer);
