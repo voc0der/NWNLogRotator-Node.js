@@ -44,6 +44,18 @@ by default, it might not work with your settings. The following flags are access
 -g | sftp port | required if -u true | usage: -g 22
 -z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"
 ```
+The default settings are as follows:
+``` 
+-s[erver] = ""
+-u[upload] = false
+-p[ath_to_log] = C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt
+-d[estination_log] = C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs
+-h[ostname_sftp] = ""
+-l[ogin username_sftp] = ""
+-k[ey_or_password_sftp] = ""
+-g[ate_port_sftp] = ""
+-z[one_directory_sftp] = ""
+```
 
 **Sample_NWN_Launcher.bat:** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
 ```batch
