@@ -1,5 +1,5 @@
 # NWN-Log-Rotator
-The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. As of version 3, they also prune logs that are too small, and also upload remotely to sftp. Using the batch file below along with this together will fully automate logging in NWN. A very basic and crude example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/latest/v3/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
+The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. As of version 3, they also prune logs that are too small, and also upload remotely to sftp. Using the batch file below along with this together will fully automate logging in NWN. A very basic and crude example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/latest/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
 Before attempting to use this script, please install <a href="https://nodejs.org/en/">node.js</a> to the default location if it is not already. <br />
