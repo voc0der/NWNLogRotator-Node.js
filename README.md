@@ -66,7 +66,7 @@ The default settings are as follows:
 -z[one_directory_sftp] = ""
 ```
 
-To test it, you can type this into the Command Prompt (cmd.exe) until it works as desired. Replace or remove flags that are not needed.
+To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
 ```
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 ```
