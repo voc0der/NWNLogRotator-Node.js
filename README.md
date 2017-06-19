@@ -61,7 +61,7 @@ The default settings are as follows:
 ```batch
 @echo off
 echo *** Launching Server ***
-START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" nwmain.exe +connect 127.0.0.1:5121
+start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" nwmain.exe +connect 127.0.0.1:5121
 echo *** Neverwinter Nights Terminated ***
 echo Processing Logs...
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
@@ -72,7 +72,7 @@ If you play on a server with custom launchers (i.e. sinfarx.exe), you will need 
 ```batch
 @echo off
 echo *** Launching Server ***
-START /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect 127.0.0.1:5121
+start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect 127.0.0.1:5121
 :loop
 timeout /t 10 /nobreak > nul
 tasklist /fi "imagename eq nwmain.exe" |find ":" > nul
@@ -87,6 +87,6 @@ exit
 
 - Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
 ```batch
-Start hstart64.exe /NOCONSOLE "C:\Program Files (x86)\GOG.com/Neverwinter Nights Diamond Edition\Sample_NWN_Launcher.bat" 
+start hstart64.exe /noconsole "C:\Program Files (x86)\GOG.com/Neverwinter Nights Diamond Edition\Sample_NWN_Launcher.bat" 
 ```
 Once it works, you can make a shortcut to that batch file. Make sure the shortcuts are configured to *Run as Administrator*.
