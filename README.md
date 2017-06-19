@@ -4,14 +4,23 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 <br />
 Before attempting to use this script, please install <a href="https://nodejs.org/en/">node.js</a> to the default location if it is not already. <br />
 
-1) Open a command prompt (Open the Start Menu, then click "run". In the dialog box, type "cmd" then hit enter).
+*If you already have default NWN logging enabled proceed to step 5.*
+1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
 
-2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
+2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
+
+3) Start NWN, join a server, and spam a few chat lines through chat for the logger. 
+
+4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
+
+5) Open a command prompt (Open the Start Menu, then click "run". In the dialog box, type "cmd" then hit enter).
+
+6) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
 
-3) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
+7) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
 
 ```
 npm install stream-replace
@@ -26,7 +35,7 @@ npm install ssh2-sftp-client
 
 **Important:** If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-4) Retrieve the latest RavenLogRotator.js here on this repository and place it in your base NWN directory.
+8) Retrieve the latest RavenLogRotator.js here on this repository and place it in your base NWN directory.
 
 **Testing:** with the Command prompt open, type the following: [Hint: You will want to make sure you have a decently sized log file available as a source.]
 ```batch
