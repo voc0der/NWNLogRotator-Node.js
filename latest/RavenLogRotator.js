@@ -4,17 +4,20 @@
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [ BASE VARIABLES ]
+var server = "";
+var upload_file = false;
+var source = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt";
+var output_base_dir = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs";
 var sftp_hostname = "";
 var sftp_port = "";
 var sftp_username = "";
 var sftp_password = "";
 var sftp_log_dir = "";
-var output_base_dir = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs";
-var source = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt";
+
+var minimumFileSizeToUpload = 1000; // in bytes
 var process = require( "process" );
 var passed_arguments = process.argv.slice(2);
-var upload_file = false;
-var server = "";
+
 
 function stopAndShowValidOptions () {
 	console.log('The available arguments are: ');
@@ -217,7 +220,7 @@ function uploadToSFTP() {
 	} else {
 		log_path = log_path + "/" + fileName;
 	}
-	if(fileSizeInBytes >= 1000) {
+	if(fileSizeInBytes >= minimumFileSizeToUpload) {
 		/* upload to sftp */
 		sftp.connect({
 			host: sftp_hostname,
