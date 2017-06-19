@@ -86,7 +86,7 @@ exit
 - If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
 
 - Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
-```
+```batch
 Start hstart64.exe /NOCONSOLE "C:\Program Files (x86)\GOG.com/Neverwinter Nights Diamond Edition\Sample_NWN_Launcher.bat" 
 ```
 Once it works, you can make a shortcut to that batch file. Make sure the shortcuts are configured to *Run as Administrator*.
