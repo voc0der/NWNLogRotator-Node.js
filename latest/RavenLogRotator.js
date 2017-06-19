@@ -3,7 +3,7 @@
 // Version 1.0
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
-// [ BASE VARIABLES ]
+// [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
 var server = "";
 var upload_file = false;
 var source = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt";
