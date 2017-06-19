@@ -66,6 +66,13 @@ The default settings are as follows:
 -z[one_directory_sftp] = ""
 ```
 
+To test it, you can type this into the Command Prompt (cmd.exe) until it works as desired. Replace or remove flags that are not needed.
+```
+node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
+```
+
+When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
+
 **Sample_NWN_Launcher.bat:** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
 ```batch
 @echo off
