@@ -9,7 +9,7 @@ Before attempting to use this script, please install <a href="https://nodejs.org
 
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
 
-3) Start NWN, join a server, and spam a few chat lines through chat for the logger. 
+3) Start NWN, join a server, and spam a few chat lines through chat for the logger.  Close NWN.
 
 4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
