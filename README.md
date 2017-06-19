@@ -80,13 +80,13 @@ if errorlevel 1 goto loop
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 exit
 ```
-**Tip:** If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
 
-Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory.
+**Tips:** 
 
-Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
+- If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
+
+- Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
 ```
 Start hstart64.exe /NOCONSOLE "C:\Program Files (x86)\GOG.com/Neverwinter Nights Diamond Edition\Sample_NWN_Launcher.bat" 
 ```
-
-Once it's all working, you can make those your shortcut. Make sure the shortcuts are configured to *Run as Administrator*.
+Once it works, you can make a shortcut to that batch file. Make sure the shortcuts are configured to *Run as Administrator*.
