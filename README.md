@@ -14,7 +14,7 @@ This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installe
 
 4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
-5) Open a command prompt (Open the Start Menu, then click "run". In the dialog box, type "cmd" then hit enter).
+5) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
 
 6) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```
