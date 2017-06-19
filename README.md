@@ -2,7 +2,8 @@
 The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. The log rotator can also optionally upload remotely to sftp. With the batch file below along with this, it is easy to fully automate logging in NWN in a colorful way! A very basic example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/Mystique5022/NWN-Log-Rotator/blob/master/latest/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
-Before attempting to use this script, please install <a href="https://nodejs.org/en/">node.js</a> to the default location if it is not already. <br />
+**Important:**
+This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed to the default location if it is not already.<br />
 
 *If you already have default NWN logging enabled proceed to step 5.*
 1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
