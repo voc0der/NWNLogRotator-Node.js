@@ -37,11 +37,11 @@ npm install ssh2-sftp-client
 
 8) Retrieve the latest RavenLogRotator.js here on this repository and place it in your base NWN directory.
 
-**Testing:** with the Command prompt open, type the following: [Hint: You will want to make sure you have a decently sized log file available as a source.]
+**Testing:** with the Command prompt open, type the following: **Hint:** You will want to make sure you have a decently sized log file available as a source.
 ```batch
 node RavenLogRotator 
 ```
-by default, it might not work with your settings. The following flags are accessible to help specify it for your configuration:
+By default, it might not work with your settings. The following flags are optional, to specify your configuration:
 ```
 -s | nwn server name for organization | usage: -s sinfar
 -u | upload file to sftp (true or false) | usage: -u true
