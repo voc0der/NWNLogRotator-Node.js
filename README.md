@@ -89,7 +89,7 @@ If you play on a server with custom launchers (i.e. sinfarx.exe), you will need 
 ```batch
 @echo off
 echo *** Launching Server ***
-start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect 127.0.0.1:5121
+start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect play.sinfar.net
 :loop
 timeout /t 10 /nobreak > nul
 tasklist /fi "imagename eq nwmain.exe" |find ":" > nul
