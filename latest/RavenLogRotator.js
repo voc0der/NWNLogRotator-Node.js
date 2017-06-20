@@ -161,6 +161,8 @@ fq.stat( source, function( error, stat ) {
 			.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 			.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
 			.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
+			.replace(/.+?(?=.*)has left as a game master..\r\n/g, '')
+			.replace(/.+?(?=.*)has joined as a game master..\r\n/g, '')
 			.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
 			.replace(/.+?(?=.*)You are now in a No PVP area.\r\n/g, '')
 			.replace(/.+?(?=.*)Resting.\r\n/g, '')
