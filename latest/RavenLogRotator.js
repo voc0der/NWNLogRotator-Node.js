@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 06/18/2017
-// Version 1.0
+// Date: 06/22/2017
+// Version 1.1
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
@@ -13,6 +13,7 @@ var sftp_port = "";
 var sftp_username = "";
 var sftp_password = "";
 var sftp_log_dir = "";
+var testmode = false;
 
 var minimumFileSizeToUpload = 1000; // in bytes
 var process = require( "process" );
@@ -30,17 +31,18 @@ function stopAndShowValidOptions () {
 	console.log('-k | sftp password | required if -u true | usage: -k mysftppassword');
 	console.log('-g | sftp port | required if -u true | usage: -g 22');
 	console.log('-z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"');
+	console.log('-t | test mode, disable file write (true or false) | usage: -t true');
 	console.log("Invalid argument structure process was aborted.");
 	process.exit();
 }
 
 // [[ ARGUMENTS ]] 
-var args_array = ["s","u","p","d","h","l","k","g","z"];
+var args_array = ["s","u","p","d","h","l","k","g","z","t"];
 var flag = "";
 if(passed_arguments.toString().indexOf(',') > 0) {
 	var parameter_array = passed_arguments.toString().split(',');
 	for (i = 0; i < parameter_array.length; i++) { 
-		if(parameter_array[i].length == 2 && flag == "" && parameter_array[i].charAt(0) == "-") {
+		if(parameter_array[i].length == 2 && flag == "" && parameter_array[i].charAt(0) == "-" && i != (parameter_array.length - 1) ) {
 			for(p = 0; p < args_array.length; p++) {
 				if(args_array[p] == parameter_array[i].charAt(1)) {
 					flag = args_array[p];
@@ -90,6 +92,14 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 					stopAndShowValidOptions();
 				}
 				sftp_log_dir = parameter_array[i];
+			} else if (flag == "t") {
+				if(parameter_array[i] == "true") {
+					testmode = true;
+				} else if(parameter_array[i] == "false") {
+					testmode = false;
+				} else {
+					stopAndShowValidOptions();
+				}
 			}
 			flag = "";
 		} else {
@@ -141,20 +151,30 @@ fq.stat( source, function( error, stat ) {
 	}
 
 	if( stat.isFile() ) {	
-		
-		var logTitle = "<h4>[<font color='#EEBB33'>Server Log</font>]" 
-				+ " <font color='#8F7FFF'>Date/Time</font>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
+
+		var css = 	"<style>" +
+						".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
+						".default { color: #FFFFFF }" +
+						".timestamp { color: #B1A2BD; }" +
+						".actors { color: #8F7FFF; }" +
+						".tells { color: #0F0; }" +
+						".whispers { color: #808080; }" +
+						".emotes { color: #ffaed6; }" +
+					"</style>";
+
+		var logTitle = "<h4>[<span class='timestamp'>Server Log</span>]" 
+				+ " <span class='actors'>Date/Time</span>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
 				+ "</h4>";
-		var preLog = '<html><body bgColor=\'#000000\' style=\'font-family: Tahoma, Geneva, sans-serif;\'><font color=\'#FFFFFF\'>';
-		var postLog = '</body></html>';
-		
-		var filterLogs = new through(function(data){
-			var dataFilter = preLog + logTitle + 
+		var preLog = "<html><body class='logbody'><span class='default'>";
+		var postLog = "</span></body></html>";
+
+		var filterLogs = new through(function write(data){
+			var dataFilter = css + preLog + logTitle + 
 			data.toString()
 			// core format replacements
 			.replace(/\[CHAT WINDOW TEXT\] /g, '')
-			.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<font color=\'#B1A2BD\'>[')
-			.replace(/:[0-9]{2}]{1}/g, ']</font>')
+			.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<span class="timestamp">[')
+			.replace(/:[0-9]*]{1}/g, ']</span>')
 			// additional patterns
 			.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
 			.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
@@ -176,37 +196,40 @@ fq.stat( source, function( error, stat ) {
 			.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
 			.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
 			// actors
-			.replace(/\]<\/font>((...).*: )/g, ']</font><font color=\'#8F7FFF\'> $1</font><font color=\'#FFFFFF\'>')
+			.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
 			// tells
-			.replace(/ :.*<\/font><font color='.*(\[Tell])/g, '</font><font color=\'#0F0\'> $1:')
+			.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1$2</span>')
 			// whispers 
-			.replace(/: <\/font><font color='.*(\[Whisper])/g, '</font><font color=\'#808080\'> $1:')
+			.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers">$1$2</span>')
 			// emotes 
-			.replace(/(\*.*\*)/g, '<font color=\'#ffaed6\'>$1</font>')
+			.replace(/(\*.*\*)/g, '<span class="emotes">$1</span>')
 			// html formatting
 			.replace(/\r\n/g,'<br />');
 			dataFilter = dataFilter + postLog;
+			css = "";
 			logTitle = "";
 			// loop -> transform
 			this.queue(dataFilter);
 		});
-		
-		var reader = fq.createReadStream(source);
-		/* DEBUGGER 
-		reader
-		.pipe(filterLogs)
-		.pipe(process.stdout);
-		*/
-		
-		var writer = fq.createWriteStream(destination);
-		reader
-		.pipe(filterLogs)
-		.pipe(writer);
 
-		if(upload_file == true) {
-			writer.on('close', function() {
-				uploadToSFTP();
-			});
+		var reader = fq.createReadStream(source);
+		if(testmode == true) {
+			// display output in console
+			reader
+			.pipe(filterLogs)
+			.pipe(process.stdout);
+		} else {
+			// write output to html
+			var writer = fq.createWriteStream(destination);
+			reader
+			.pipe(filterLogs)
+			.pipe(writer);
+
+			if(upload_file == true) {
+				writer.on('close', function() {
+					uploadToSFTP();
+				});
+			}
 		}
 	}					
 });
