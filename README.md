@@ -53,6 +53,7 @@ By default, it might not work with your settings. The following flags are option
 -k | sftp password | required if -u true | usage: -k mysftppassword
 -g | sftp port | required if -u true | usage: -g 22
 -z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"
+-t | test mode, disable file write (true or false) | usage: -t true'
 ```
 The default settings are as follows:
 ``` 
@@ -65,6 +66,7 @@ The default settings are as follows:
 -k[ey_or_password_sftp] = ""
 -g[ate_port_sftp] = ""
 -z[one_directory_sftp] = ""
+-t[est] = false
 ```
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
