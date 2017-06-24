@@ -68,6 +68,7 @@ The default settings are as follows:
 -g[ate_port_sftp] = ""
 -z[one_directory_sftp] = ""
 -t[est] = false
+-c[olor_header] = FFFFFF
 ```
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
