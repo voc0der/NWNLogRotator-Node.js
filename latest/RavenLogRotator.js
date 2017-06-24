@@ -1,6 +1,6 @@
 // Author: RaveN
 // Date: 06/22/2017
-// Version 1.1
+// Version 1.2
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
@@ -14,6 +14,7 @@ var sftp_username = "";
 var sftp_password = "";
 var sftp_log_dir = "";
 var testmode = false;
+var logheadeader_color = "FFFFFF";
 
 var minimumFileSizeToUpload = 1000; // in bytes
 var process = require( "process" );
@@ -32,12 +33,13 @@ function stopAndShowValidOptions () {
 	console.log('-g | sftp port | required if -u true | usage: -g 22');
 	console.log('-z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"');
 	console.log('-t | test mode, disable file write (true or false) | usage: -t true');
+	console.log('-c | color of server header | usage: -c 03FFFF');
 	console.log("Invalid argument structure process was aborted.");
 	process.exit();
 }
 
 // [[ ARGUMENTS ]] 
-var args_array = ["s","u","p","d","h","l","k","g","z","t"];
+var args_array = ["s","u","p","d","h","l","k","g","z","t","c"];
 var flag = "";
 if(passed_arguments.toString().indexOf(',') > 0) {
 	var parameter_array = passed_arguments.toString().split(',');
@@ -100,6 +102,8 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 				} else {
 					stopAndShowValidOptions();
 				}
+			} else if (flag == "c") {
+				logheadeader_color = parameter_array[i];
 			}
 			flag = "";
 		} else {
@@ -152,8 +156,15 @@ fq.stat( source, function( error, stat ) {
 
 	if( stat.isFile() ) {	
 
+		// Init cap server name
+		var server_label = server;
+		server_label = server_label.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+			return letter.toUpperCase();
+		});
+
 		var css = 	"<style>" +
 						".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
+						".logheader { color: #03FFFF; }" +
 						".default { color: #FFFFFF }" +
 						".timestamp { color: #B1A2BD; }" +
 						".actors { color: #8F7FFF; }" +
@@ -162,7 +173,7 @@ fq.stat( source, function( error, stat ) {
 						".emotes { color: #ffaed6; }" +
 					"</style>";
 
-		var logTitle = "<h4>[<span class='timestamp'>Server Log</span>]" 
+		var logTitle = "<h4>[<span class='logheader'>" + server_label + " Log</span>]" 
 				+ " <span class='actors'>Date/Time</span>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
 				+ "</h4>";
 		var preLog = "<html><body class='logbody'><span class='default'>";
@@ -200,7 +211,7 @@ fq.stat( source, function( error, stat ) {
 			// tells
 			.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1$2</span>')
 			// whispers 
-			.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers">$1$2</span>')
+			.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers"> $1:$2</span>')
 			// emotes 
 			.replace(/(\*.*\*)/g, '<span class="emotes">$1</span>')
 			// html formatting

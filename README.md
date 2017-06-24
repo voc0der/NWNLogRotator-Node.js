@@ -53,7 +53,8 @@ By default, it might not work with your settings. The following flags are option
 -k | sftp password | required if -u true | usage: -k mysftppassword
 -g | sftp port | required if -u true | usage: -g 22
 -z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"
--t | test mode, disable file write (true or false) | usage: -t true'
+-t | test mode, disable file write (true or false) | usage: -t true
+-c | color of server header | usage: -c 03FFFF
 ```
 The default settings are as follows:
 ``` 
