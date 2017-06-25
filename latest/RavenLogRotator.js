@@ -209,7 +209,7 @@ fq.stat( source, function( error, stat ) {
 			// actors
 			.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
 			// tells
-			.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1$2</span>')
+			.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1:$2</span>')
 			// whispers 
 			.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers"> $1:$2</span>')
 			// emotes 
