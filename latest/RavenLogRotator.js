@@ -188,7 +188,9 @@ fq.stat( source, function( error, stat ) {
 			.replace(/:[0-9]*]{1}/g, ']</span>')
 			// additional patterns
 			.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
-			.replace(/.+?(?=.*)Minimum Tumble AC Bonus: .{1}[0-9]*\r\n/g, '')
+			.replace(/.+?(?=.*)Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+			.replace(/Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+			.replace(/.+?(?=.*)No Monk\/Shield AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
 			.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
 			.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
 			.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
