@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 06/24/2017
-// Version 1.2
+// Date: 06/28/2017
+// Version 1.3
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
@@ -118,8 +118,6 @@ var fs = require( 'fs' );
 var path = require( 'path' );
 var replace = require('stream-replace');
 var through = require('through');
-var FileQueue = require('filequeue');
-var fq = new FileQueue(100);
 
 // [[ Build Filename ]] e.g. NWNLog_2013_04_23_192504
 var today = new Date();
@@ -147,104 +145,93 @@ var fileName = "NWNLog_" + dateString + ".html";
 var destination = output_base_dir + "/" + server;  
 destination = destination + "/" + fileName;
 
-fq.stat( source, function( error, stat ) {
+fs.readFile(source, "utf8", function( error, data ) {
 
 	if( error ) {
 		console.error( "Error reading source file.", error );
 		return;
 	}
+	// Init cap server name
+	var server_label = server;
+	server_label = server_label.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+		return letter.toUpperCase();
+	});
 
-	if( stat.isFile() ) {	
+	var css = 	"<style>" +
+					".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
+					".logheader { color: #03FFFF; }" +
+					".default { color: #FFFFFF }" +
+					".timestamp { color: #B1A2BD; }" +
+					".actors { color: #8F7FFF; }" +
+					".tells { color: #0F0; }" +
+					".whispers { color: #808080; }" +
+					".emotes { color: #ffaed6; }" +
+				"</style>";
 
-		// Init cap server name
-		var server_label = server;
-		server_label = server_label.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-			return letter.toUpperCase();
-		});
+	var logTitle = "<h4>[<span class='logheader'>" + server_label + " Log</span>]" 
+			+ " <span class='actors'>Date/Time</span>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
+			+ "</h4>";
+	var preLog = "<html><body class='logbody'><span class='default'>";
+	var postLog = "</span></body></html>";
 
-		var css = 	"<style>" +
-						".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
-						".logheader { color: #03FFFF; }" +
-						".default { color: #FFFFFF }" +
-						".timestamp { color: #B1A2BD; }" +
-						".actors { color: #8F7FFF; }" +
-						".tells { color: #0F0; }" +
-						".whispers { color: #808080; }" +
-						".emotes { color: #ffaed6; }" +
-					"</style>";
+	//var filteredLogs = new through(function write(data){
+	var filteredLogs = css + preLog + logTitle + 
+	data.toString()
+	// core format replacements
+	.replace(/\[CHAT WINDOW TEXT\] /g, '')
+	.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<span class="timestamp">[')
+	.replace(/:[0-9]*]{1}/g, ']</span>')
+	// additional patterns
+	.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
+	.replace(/.+?(?=.*)Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+	.replace(/Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+	.replace(/.+?(?=.*)No Monk\/Shield AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+	.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
+	.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
+	.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
+	.replace(/.+?(?=.*)has left as a game master..\r\n/g, '')
+	.replace(/.+?(?=.*)has joined as a game master..\r\n/g, '')
+	.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
+	.replace(/.+?(?=.*)You are now in a No PVP area.\r\n/g, '')
+	.replace(/.+?(?=.*)Resting.\r\n/g, '')
+	.replace(/.+?(?=.*)Cancelled Rest.\r\n/g, '')
+	.replace(/.+?(?=.*)You used a key.\r\n/g, '')
+	.replace(/.+?(?=.*)Equipped item swapped out.\r\n/g, '')
+	.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
+	.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
+	.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
+	.replace(/.+?(?=.*)Experience Points Gained: [0-9]*\r\n/g, '')
+	.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
+	.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
+	// actors
+	.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
+	// tells
+	.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1:$2</span>')
+	// whispers 
+	.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers"> $1:$2</span>')
+	// emotes 
+	.replace(/(\*.*\*)/g, '<span class="emotes">$1</span>')
+	// html formatting
+	.replace(/\r\n/g,'<br />');
+	filteredLogs = filteredLogs + postLog;
 
-		var logTitle = "<h4>[<span class='logheader'>" + server_label + " Log</span>]" 
-				+ " <span class='actors'>Date/Time</span>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
-				+ "</h4>";
-		var preLog = "<html><body class='logbody'><span class='default'>";
-		var postLog = "</span></body></html>";
-
-		var filterLogs = new through(function write(data){
-			var dataFilter = css + preLog + logTitle + 
-			data.toString()
-			// core format replacements
-			.replace(/\[CHAT WINDOW TEXT\] /g, '')
-			.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<span class="timestamp">[')
-			.replace(/:[0-9]*]{1}/g, ']</span>')
-			// additional patterns
-			.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
-			.replace(/.+?(?=.*)Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-			.replace(/Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-			.replace(/.+?(?=.*)No Monk\/Shield AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-			.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
-			.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
-			.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
-			.replace(/.+?(?=.*)has left as a game master..\r\n/g, '')
-			.replace(/.+?(?=.*)has joined as a game master..\r\n/g, '')
-			.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
-			.replace(/.+?(?=.*)You are now in a No PVP area.\r\n/g, '')
-			.replace(/.+?(?=.*)Resting.\r\n/g, '')
-			.replace(/.+?(?=.*)Cancelled Rest.\r\n/g, '')
-			.replace(/.+?(?=.*)You used a key.\r\n/g, '')
-			.replace(/.+?(?=.*)Equipped item swapped out.\r\n/g, '')
-			.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
-			.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
-			.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
-			.replace(/.+?(?=.*)Experience Points Gained: [0-9]*\r\n/g, '')
-			.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
-			.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
-			// actors
-			.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
-			// tells
-			.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1:$2</span>')
-			// whispers 
-			.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers"> $1:$2</span>')
-			// emotes 
-			.replace(/(\*.*\*)/g, '<span class="emotes">$1</span>')
-			// html formatting
-			.replace(/\r\n/g,'<br />');
-			dataFilter = dataFilter + postLog;
-			css = "";
-			logTitle = "";
-			// loop -> transform
-			this.queue(dataFilter);
-		});
-
-		var reader = fq.createReadStream(source);
-		if(testmode == true) {
-			// display output in console
-			reader
-			.pipe(filterLogs)
-			.pipe(process.stdout);
-		} else {
-			// write output to html
-			var writer = fq.createWriteStream(destination);
-			reader
-			.pipe(filterLogs)
-			.pipe(writer);
-
-			if(upload_file == true) {
-				writer.on('close', function() {
-					uploadToSFTP();
-				});
+	if(testmode == true) {
+		// display output in console
+		console.log(filteredLogs);
+	} else {
+		// write output to html
+		fs.writeFile(destination, filteredLogs, function(err) {
+			if(err) {
+				return console.log(err);
 			}
+		}); 
+
+		if(upload_file == true) {
+			writer.on('close', function() {
+				uploadToSFTP();
+			});
 		}
-	}					
+	}			
 });
 
 function uploadToSFTP() {
