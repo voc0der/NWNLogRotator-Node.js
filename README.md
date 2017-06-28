@@ -21,11 +21,11 @@ This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installe
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
 
-7) **Note:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+7) **OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
 ```batch
 npm install ssh2-sftp-client
 ```
-If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
+If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 8) Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in your base NWN directory.
 
