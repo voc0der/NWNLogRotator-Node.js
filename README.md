@@ -69,7 +69,7 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**[Sample_NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
+**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
 ```batch
 @echo off
 echo *** Launching Server ***
@@ -80,7 +80,7 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 exit
 ```
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
-**This method requires you to run the batch as administrator.**
+**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator.**
 ```batch
 @echo off
 echo *** Launching Server ***
