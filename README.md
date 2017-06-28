@@ -27,7 +27,7 @@ npm install ssh2-sftp-client
 ```
 If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-8) Retrieve the latest RavenLogRotator.js here on this repository and place it in your base NWN directory.
+8) Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in your base NWN directory.
 
 **Testing:** with the Command prompt open, type the following: **Hint:** You will want to make sure you have a decently sized log file available as a source.
 ```batch
