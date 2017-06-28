@@ -174,9 +174,8 @@ fs.readFile(source, "utf8", function( error, data ) {
 	var preLog = "<html><body class='logbody'><span class='default'>";
 	var postLog = "</span></body></html>";
 
-	//var filteredLogs = new through(function write(data){
 	var filteredLogs = css + preLog + logTitle + 
-	data.toString()
+	data
 	// core format replacements
 	.replace(/\[CHAT WINDOW TEXT\] /g, '')
 	.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<span class="timestamp">[')
