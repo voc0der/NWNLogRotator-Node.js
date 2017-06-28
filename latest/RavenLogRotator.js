@@ -116,8 +116,6 @@ if(upload_file == true && (sftp_hostname == "" || sftp_username == "" || sftp_pa
 
 var fs = require( 'fs' );
 var path = require( 'path' );
-var replace = require('stream-replace');
-var through = require('through');
 
 // [[ Build Filename ]] e.g. NWNLog_2013_04_23_192504
 var today = new Date();

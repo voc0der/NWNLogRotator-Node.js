@@ -1,5 +1,5 @@
 # NWN-Log-Rotator
-The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. The log rotator can also optionally upload remotely to sftp. With the batch file below along with this, it is easy to fully automate logging in NWN in a colorful way! A very basic example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/latest/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
+The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. The log rotator can also optionally upload remotely to sftp. With the batch file below along with this, it is easy to fully automate logging in NWN in a colorful way! A very basic example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/latest/advanced/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
 **Important:**
@@ -17,24 +17,15 @@ This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installe
 5) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
 
 6) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
-```
+```batch
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
 
-7) Ensure these node.js plugins are installed **in that path above** by typing these commands into cmd.exe.
-
-```
-npm install stream-replace
-npm install through
-npm install filequeue 
-```
-
-**Note:** npm is the node package manager, and those are the dependencies that this script needs to run. ssh2-sftp-client is optional if not using sftp. If you **are** using sftp include this line.
-```
+7) **Note:** Only iff you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+```batch
 npm install ssh2-sftp-client
 ```
-
-**Important:** If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
+If these commands fail, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 8) Retrieve the latest RavenLogRotator.js here on this repository and place it in your base NWN directory.
 
@@ -78,7 +69,7 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**Sample_NWN_Launcher.bat:** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
+**[Sample_NWN_Launcher.bat](../master/latest/Sample_NWN_Launcher.bat):** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
 ```batch
 @echo off
 echo *** Launching Server ***
@@ -107,7 +98,7 @@ exit
 - If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
 
 - Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
-```
+```batch
 start /w /d "C:\Program Files (x86)\GOG.com\Neverwinter Nights Diamond Edition\" hstart64.exe /noconsole "Sample_NWN_Launcher.bat"
 ```
 If you added hstart64.exe to your Windows\system32 folder you can call it from cmd like this;
