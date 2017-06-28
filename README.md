@@ -21,7 +21,7 @@ This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installe
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
 
-7) **OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+**OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
 ```batch
 npm install ssh2-sftp-client
 ```
