@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 06/28/2017
-// Version 1.3
+// Date: 06/29/2017
+// Version 1.4
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
@@ -221,40 +221,36 @@ fs.readFile(source, "utf8", function( error, data ) {
 			if(err) {
 				return console.log(err);
 			}
-		}); 
-
-		if(upload_file == true) {
-			writer.on('close', function() {
-				uploadToSFTP();
-			});
-		}
+		},uploadToSFTP); 
 	}			
 });
 
 function uploadToSFTP() {
-	var Client = require('ssh2-sftp-client');
-	var sftp = new Client();
-	var fileStats = fs.statSync(destination);
-	var fileSizeInBytes = fileStats.size;
-	var log_path = sftp_log_dir;
-	if(server != "") {
-		log_path = log_path + "/" + server + "/" + fileName;
-	} else {
-		log_path = log_path + "/" + fileName;
-	}
-	if(fileSizeInBytes >= minimumFileSizeToUpload) {
-		/* upload to sftp */
-		sftp.connect({
-			host: sftp_hostname,
-			port: sftp_port,
-			username: sftp_username,
-			password: sftp_password
-		}).then(() => {
-			return sftp.put(destination, log_path)
-		}).then(() => {
-			process.exit();	
-		}).catch((err) => {
-			console.log(err, 'catch error');
-		});
+	if(upload_file == true) {
+		var Client = require('ssh2-sftp-client');
+		var sftp = new Client();
+		var fileStats = fs.statSync(destination);
+		var fileSizeInBytes = fileStats.size;
+		var log_path = sftp_log_dir;
+		if(server != "") {
+			log_path = log_path + "/" + server + "/" + fileName;
+		} else {
+			log_path = log_path + "/" + fileName;
+		}
+		if(fileSizeInBytes >= minimumFileSizeToUpload) {
+			/* upload to sftp */
+			sftp.connect({
+				host: sftp_hostname,
+				port: sftp_port,
+				username: sftp_username,
+				password: sftp_password
+			}).then(() => {
+				return sftp.put(destination, log_path)
+			}).then(() => {
+				process.exit();	
+			}).catch((err) => {
+				console.log(err, 'catch error');
+			});
+		}
 	}
 }
