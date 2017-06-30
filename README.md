@@ -35,9 +35,14 @@ npm install ssh2-sftp-client
 If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 By default, it might not work with your settings. The following flags are optional, to specify your configuration:
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 ```
--s | nwn server name for organization | usage: -s sinfar
--u | upload file to sftp (true or false) | usage: -u true
+-s | nwn server name for organization | default: "" | usage: -s sinfar
+-u | upload file to sftp (true or false) | default: false | usage: -u true
 -p | path to log ending with .txt | usage: -p "C:/PathToLog/NWN/nwClientLog1.txt"
 -d | log destination with no trailing slash | usage: -d "C:/NewLogFolder"
 -h | sftp hostname | required if -u true | usage: -h host.sftphostname.com
@@ -49,21 +54,6 @@ By default, it might not work with your settings. The following flags are option
 -c | color of server header | usage: -c 03FFFF
 -m | minimum lines before logging | usage: -m 10
 ```
-The default settings are as follows:
-``` 
--s[erver] = ""
--u[upload] = false
--p[ath_to_log] = C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt
--d[estination_log] = C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs
--h[ostname_sftp] = ""
--l[ogin username_sftp] = ""
--k[ey_or_password_sftp] = ""
--g[ate_port_sftp] = ""
--z[one_directory_sftp] = ""
--t[est] = false
--c[olor_header] = FFFFFF
--m[inimum lines] = 10
-```
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
 ```
@@ -72,29 +62,10 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Implementing the node into your nwn launch bat is easy to do. The following is a sample implementation.
-```batch
-@echo off
-echo *** Launching Server ***
-start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" nwmain.exe +connect 127.0.0.1:5121
-echo *** Neverwinter Nights Terminated ***
-echo Processing Logs...
-node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
-exit
-```
+Implementing the node into your nwn launch bat is easy to do. The following are some samples:
+**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** 
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
-**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator.**
-```batch
-@echo off
-echo *** Launching Server ***
-start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect play.sinfar.net
-:loop
-timeout /t 10 /nobreak > nul
-tasklist /fi "imagename eq nwmain.exe" |find ":" > nul
-if errorlevel 1 goto loop
-node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
-exit
-```
+**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator, as it becomes a subprocess.**
 
 **Tips:** 
 
