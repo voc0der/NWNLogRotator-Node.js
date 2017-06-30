@@ -36,7 +36,7 @@ The following flags are all optional, but may be changed to specify your configu
 | ------------- | ------------- | ------------- | ------------- |
 | -s | nwn server name | "" | -s sinfar |
 | -u | upload to sftp | false | -u true |
-| -p | path to log ending in .txt | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" |
+| -p | path to log | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" |
 | -d | log destination | "/Logs" | -p "C:/nwnlogs/" |
 | -h | sftp hostname | "" | -h host.sftphostname.com |
 | -l | sftp username | "" | -l mysftpusername |
