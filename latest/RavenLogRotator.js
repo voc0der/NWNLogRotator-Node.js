@@ -1,6 +1,6 @@
 // Author: RaveN
 // Date: 06/29/2017
-// Version 1.4
+// Version 1.5
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
@@ -16,7 +16,7 @@ var sftp_log_dir = "";
 var testmode = false;
 var logheadeader_color = "FFFFFF";
 
-var minimumFileSizeToUpload = 1000; // in bytes
+var minimum_rows = 10;
 var process = require( "process" );
 var passed_arguments = process.argv.slice(2);
 
@@ -34,12 +34,13 @@ function stopAndShowValidOptions () {
 	console.log('-z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"');
 	console.log('-t | test mode, disable file write (true or false) | usage: -t true');
 	console.log('-c | color of server header | usage: -c 03FFFF');
+	console.log('-m | minimum lines before logging | usage: -m 10');
 	console.log("Invalid argument structure process was aborted.");
 	process.exit();
 }
 
 // [[ ARGUMENTS ]] 
-var args_array = ["s","u","p","d","h","l","k","g","z","t","c"];
+var args_array = ["s","u","p","d","h","l","k","g","z","t","c","m"];
 var flag = "";
 if(passed_arguments.toString().indexOf(',') > 0) {
 	var parameter_array = passed_arguments.toString().split(',');
@@ -104,6 +105,9 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 				}
 			} else if (flag == "c") {
 				logheadeader_color = parameter_array[i];
+			}
+			 else if (flag == "m") {
+				minimum_rows = parameter_array[i];
 			}
 			flag = "";
 		} else {
@@ -212,45 +216,45 @@ fs.readFile(source, "utf8", function( error, data ) {
 	.replace(/\r\n/g,'<br />');
 	filteredLogs = filteredLogs + postLog;
 
-	if(testmode == true) {
-		// display output in console
-		console.log(filteredLogs);
-	} else {
-		// write output to html
-		fs.writeFile(destination, filteredLogs, function(err) {
-			if(err) {
-				return console.log(err);
-			}
-		},uploadToSFTP); 
-	}			
+	var actorOccurences = (filteredLogs.match(/<span class=\"actors\">/g) || []).length;
+
+	if( actorOccurences > minimum_rows) {
+		if(testmode == true) {
+			// display output in console
+			console.log(filteredLogs);
+		} else {
+			// write output to html
+			fs.writeFile(destination, filteredLogs, function(err) {
+				if(err) {
+					return console.log(err);
+				}
+			},uploadToSFTP); 
+		}			
+	}
 });
 
 function uploadToSFTP() {
 	if(upload_file == true) {
 		var Client = require('ssh2-sftp-client');
 		var sftp = new Client();
-		var fileStats = fs.statSync(destination);
-		var fileSizeInBytes = fileStats.size;
 		var log_path = sftp_log_dir;
 		if(server != "") {
 			log_path = log_path + "/" + server + "/" + fileName;
 		} else {
 			log_path = log_path + "/" + fileName;
 		}
-		if(fileSizeInBytes >= minimumFileSizeToUpload) {
-			/* upload to sftp */
-			sftp.connect({
-				host: sftp_hostname,
-				port: sftp_port,
-				username: sftp_username,
-				password: sftp_password
-			}).then(() => {
-				return sftp.put(destination, log_path)
-			}).then(() => {
-				process.exit();	
-			}).catch((err) => {
-				console.log(err, 'catch error');
-			});
-		}
+		/* upload to sftp */
+		sftp.connect({
+			host: sftp_hostname,
+			port: sftp_port,
+			username: sftp_username,
+			password: sftp_password
+		}).then(() => {
+			return sftp.put(destination, log_path)
+		}).then(() => {
+			process.exit();	
+		}).catch((err) => {
+			console.log(err, 'catch error');
+		});
 	}
 }

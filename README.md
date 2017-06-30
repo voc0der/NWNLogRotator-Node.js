@@ -47,6 +47,7 @@ By default, it might not work with your settings. The following flags are option
 -z | sftp directory with no trailing slash | required if -u true | usage: -z "/nwnlogs"
 -t | test mode, disable file write (true or false) | usage: -t true
 -c | color of server header | usage: -c 03FFFF
+-m | minimum lines before logging | usage: -m 10
 ```
 The default settings are as follows:
 ``` 
@@ -61,6 +62,7 @@ The default settings are as follows:
 -z[one_directory_sftp] = ""
 -t[est] = false
 -c[olor_header] = FFFFFF
+-m[inimum lines] = 10
 ```
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
