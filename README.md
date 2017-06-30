@@ -7,7 +7,7 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 - This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed. It is a Javascript VM that helps this script run.<br />
 - Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in **your** NWN Base directory.
 
-**Enabling NWN Logging**
+**Enabling NWN Logging:**
 
 1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
 
@@ -17,7 +17,7 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 
 4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
-**Testing RavenLogRotator**
+**Testing RavenLogRotator:**
 
 5) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
 
@@ -25,7 +25,7 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 ```batch
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
-7) Try RavenLogRotator
+7) Try calling RavenLogRotator in node.
 ```batch
 node RavenLogRotator 
 ```
@@ -47,18 +47,18 @@ The following flags are all optional, but may be changed to specify your configu
 | -c | server name color | "FFFFFF" | -c 03FFFF |
 | -m | minimum rows to log | "10" | -m 25 |
 
+**IMPORTANT:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+```batch
+npm install ssh2-sftp-client
+```
+If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
+
 To test the usage of RavenLogRotator, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe).
 ```
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 ```
 
 Repeat running it until you reach the desired results; if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
-
-**OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
-```batch
-npm install ssh2-sftp-client
-```
-If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 **Automation:**
 
