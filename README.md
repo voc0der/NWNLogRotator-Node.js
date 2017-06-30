@@ -36,10 +36,10 @@ If this command fails, try opening the command prompt as administrator and tryin
 
 By default, it might not work with your settings. The following flags are optional, to specify your configuration:
 
-| First Header  | Second Header |
+| Flag  | Description |
 | ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| -s  | NWN Server name for folder/log organization purposes.  |
+| -u  | Content Cell  |
 ```
 -s | nwn server name for organization | default: "" | usage: -s sinfar
 -u | upload file to sftp (true or false) | default: false | usage: -u true
@@ -63,8 +63,11 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
 Implementing the node into your nwn launch bat is easy to do. The following are some samples:
+
 **[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** 
+
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
+
 **[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator, as it becomes a subprocess.**
 
 **Tips:** 
