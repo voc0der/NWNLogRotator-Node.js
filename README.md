@@ -40,9 +40,9 @@ By default, it might not work with your settings. The following flags are option
 | ------------- | ------------- | ------------- | ------------- |
 | -s  | nwn server name  | "" | -s sinfar
 | -u  | upload to sftp  | false | -u true
-| -p  | path to log ending in .txt  | "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt" | -p "C:/PathToLog/NWN/nwClientLog1.txt"
+| -p  | path to log ending in .txt  | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt"
 ```
--p | path to log ending with .txt | usage: -p "C:/PathToLog/NWN/nwClientLog1.txt"
+
 -d | log destination with no trailing slash | usage: -d "C:/NewLogFolder"
 -h | sftp hostname | required if -u true | usage: -h host.sftphostname.com
 -l | sftp username | required if -u true | usage: -l mysftpusername
