@@ -47,18 +47,20 @@ The following flags are all optional, but may be changed to specify your configu
 | -c | server name color | "FFFFFF" | -c 03FFFF |
 | -m | minimum rows to log | "10" | -m 25 |
 
-**IMPORTANT:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+**Important:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
 ```batch
 npm install ssh2-sftp-client
 ```
 If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-To test the usage of RavenLogRotator, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe).
+**Advanced Usage Example**
+
+To test the usage of RavenLogRotator with advanced parameters, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe).
 ```
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 ```
 
-Repeat running it until you reach the desired results; if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
+Repeat running it, changing flags and their values until you reach the desired operation. If was successful, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
 **Automation:**
 
