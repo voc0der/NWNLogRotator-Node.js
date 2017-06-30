@@ -4,7 +4,7 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 <br />
 **Required Files / Frameworks:**
 This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed. It is a Javascript VM that helps this script run.<br />
-Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in your base NWN directory.
+Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in **your** NWN Base directory.
 
 *If you already have default NWN logging enabled proceed to step 5.*
 1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
@@ -33,7 +33,7 @@ npm install ssh2-sftp-client
 ```
 If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-By default, it might not work with your settings. The following flags are optional, to specify your configuration:
+The following flags are all optional, but may be changed to specify your configuration:
 
 | Flag  | Description | Default | Usage |
 | ------------- | ------------- | ------------- | ------------- |
@@ -50,18 +50,21 @@ By default, it might not work with your settings. The following flags are option
 | -c | server name color | "FFFFFF" | -c 03FFFF |
 | -m | minimum rows to log | "10" | -m 25 |
 
-To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
+To test the usage of RavenLogRotator, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe).
 ```
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 ```
 
-When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
+Repeat running it until you reach the desired results; if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**Automation**
+**Automation:**
+
 Here is a simple launcher log implementation in a batch script.
+
 **[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** 
 
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
+
 **[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator, as it becomes a subprocess.**
 
 **Tips:** 
