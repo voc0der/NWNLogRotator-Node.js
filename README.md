@@ -19,13 +19,13 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 
 **Testing RavenLogRotator:**
 
-5) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
+1) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
 
-6) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
+2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
-7) Try calling RavenLogRotator in node.
+3) Try calling RavenLogRotator in node.
 ```batch
 node RavenLogRotator 
 ```
