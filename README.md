@@ -36,10 +36,10 @@ If this command fails, try opening the command prompt as administrator and tryin
 
 By default, it might not work with your settings. The following flags are optional, to specify your configuration:
 
-| Flag  | Description |
-| ------------- | ------------- |
-| -s  | NWN Server name for folder/log organization purposes.  |
-| -u  | Content Cell  |
+| Flag  | Description | Default |
+| ------------- | ------------- | ------------- |
+| -s  | NWN server name  | ""
+| -u  | Upload to SFTP  | false
 ```
 -s | nwn server name for organization | default: "" | usage: -s sinfar
 -u | upload file to sftp (true or false) | default: false | usage: -u true
