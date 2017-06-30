@@ -1,13 +1,19 @@
 // Author: RaveN
-// Date: 06/29/2017
-// Version 1.5
+// Date: 06/30/2017
+// Version 1.61
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
+
+var process = require( "process" );
+var fs = require( 'fs' );
+var path = require( 'path' );
+var passed_arguments = process.argv.slice(2);
+var pwd = process.cwd().replace(/\\/g, "/");
 
 // [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
 var server = "";
 var upload_file = false;
-var source = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs/nwclientLog1.txt";
-var output_base_dir = "C:/Program Files (x86)/GOG.com/Neverwinter Nights Diamond Edition/Logs";
+var source = pwd + "/Logs/nwclientLog1.txt";
+var output_base_dir = pwd + "/Logs";
 var sftp_hostname = "";
 var sftp_port = "";
 var sftp_username = "";
@@ -16,9 +22,6 @@ var sftp_log_dir = "";
 var testmode = false;
 var logheadeader_color = "FFFFFF";
 var minimum_rows = 10;
-
-var process = require( "process" );
-var passed_arguments = process.argv.slice(2);
 
 function stopAndShowValidOptions () {
 	console.log('The available arguments are: ');
@@ -117,9 +120,6 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 
 if(upload_file == true && (sftp_hostname == "" || sftp_username == "" || sftp_password == "" || sftp_port == "") ) stopAndShowValidOptions();
 
-var fs = require( 'fs' );
-var path = require( 'path' );
-
 // [[ Build Filename ]] e.g. NWNLog_2013_04_23_192504
 var today = new Date();
 
@@ -144,6 +144,9 @@ var fileName = "NWNLog_" + dateString + ".html";
 
 // [[ Build destination folder ]]
 var destination = output_base_dir + "/" + server;  
+if (!fs.existsSync(destination)){
+    fs.mkdirSync(destination);
+}
 destination = destination + "/" + fileName;
 
 fs.readFile(source, "utf8", function( error, data ) {
