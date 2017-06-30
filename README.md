@@ -7,7 +7,7 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 - This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed. It is a Javascript VM that helps this script run.<br />
 - Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in **your** NWN Base directory.
 
-**Enabling NWN Logging (Steps 1-4)** (Skip if already enabled)
+**Enabling NWN Logging**
 
 1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
 
@@ -17,23 +17,18 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 
 4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
+**Testing RavenLogRotator**
+
 5) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
 
 6) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
-
-**Testing:** with the Command prompt open, type the following: **Hint:** You will want to make sure you have a decently sized log file available as a source.
+7) Try RavenLogRotator
 ```batch
 node RavenLogRotator 
 ```
-
-**OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
-```batch
-npm install ssh2-sftp-client
-```
-If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 The following flags are all optional, but may be changed to specify your configuration:
 
@@ -58,6 +53,12 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 ```
 
 Repeat running it until you reach the desired results; if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
+
+**OPTIONAL:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
+```batch
+npm install ssh2-sftp-client
+```
+If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 **Automation:**
 
