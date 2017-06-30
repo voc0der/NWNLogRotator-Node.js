@@ -2,8 +2,9 @@
 The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. The log rotator can also optionally upload remotely to sftp. With the batch file below along with this, it is easy to fully automate logging in NWN in a colorful way! A very basic example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/latest/advanced/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
-**Important:**
-This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed to the default location if it is not already.<br />
+**Required Files / Frameworks:**
+This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed. It is a Javascript VM that helps this script run.<br />
+Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in your base NWN directory.
 
 *If you already have default NWN logging enabled proceed to step 5.*
 1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
@@ -20,8 +21,6 @@ This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installe
 ```batch
 cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
 ```
-
-7) Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in your base NWN directory.
 
 **Testing:** with the Command prompt open, type the following: **Hint:** You will want to make sure you have a decently sized log file available as a source.
 ```batch
@@ -48,7 +47,7 @@ By default, it might not work with your settings. The following flags are option
 | -g | sftp port | "" | -g 22 |
 | -z | sftp directory| "" | -z "/nwnlogs" |
 | -t | test only | false | -t true |
-| -c | server name color | "FFFFFF" | -c "03FFFF" |
+| -c | server name color | "FFFFFF" | -c 03FFFF |
 | -m | minimum rows to log | "10" | -m 25 |
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
@@ -58,12 +57,11 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 When you run it, if it worked properly, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-Implementing the node into your nwn launch bat is easy to do. The following are some samples:
-
+**Automation**
+Here is a simple launcher log implementation in a batch script.
 **[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** 
 
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
-
 **[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator, as it becomes a subprocess.**
 
 **Tips:** 
