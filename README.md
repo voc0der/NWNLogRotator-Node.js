@@ -62,15 +62,13 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 Repeat running it, changing flags and their values until you reach the desired operation. If was successful, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**Automation:**
+**Automate Logging when playing NWN:**
 
-Here is a simple launcher log implementation in a batch script.
-
-**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** 
+**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Basic Launcher Example
 
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
 
-**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat) This method requires you to run the batch as administrator, as it becomes a subprocess.**
+**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*)
 
 **Tips:** 
 
