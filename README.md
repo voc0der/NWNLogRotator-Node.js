@@ -38,12 +38,13 @@ By default, it might not work with your settings. The following flags are option
 
 | Flag  | Description | Default | Usage |
 | ------------- | ------------- | ------------- | ------------- |
-| -s  | nwn server name  | "" | -s sinfar
-| -u  | upload to sftp  | false | -u true
-| -p  | path to log ending in .txt  | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt"
-```
+| -s | nwn server name | "" | -s sinfar |
+| -u | upload to sftp | false | -u true |
+| -p | path to log ending in .txt | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" |
+| -d | log destination | "/Logs" | -p "C:/nwnlogs/" |
 
--d | log destination with no trailing slash | usage: -d "C:/NewLogFolder"
+
+
 -h | sftp hostname | required if -u true | usage: -h host.sftphostname.com
 -l | sftp username | required if -u true | usage: -l mysftpusername
 -k | sftp password | required if -u true | usage: -k mysftppassword
@@ -52,7 +53,7 @@ By default, it might not work with your settings. The following flags are option
 -t | test mode, disable file write (true or false) | usage: -t true
 -c | color of server header | usage: -c 03FFFF
 -m | minimum lines before logging | usage: -m 10
-```
+
 
 To test it, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe). Repeat this, changing replacing or remove flags that are not needed until you achieve the desired results. 
 ```
