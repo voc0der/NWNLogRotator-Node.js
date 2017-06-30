@@ -53,7 +53,7 @@ npm install ssh2-sftp-client
 ```
 If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
-**Advanced Usage Example**
+**Advanced Flag Usage Example:**
 
 To test the usage of RavenLogRotator with advanced parameters, you can copy and paste this into the Command Prompt by right clicking in the black window and hitting paste (cmd.exe).
 ```
@@ -64,11 +64,11 @@ Repeat running it, changing flags and their values until you reach the desired o
 
 **Automate Logging when playing NWN:**
 
-**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Basic Launcher Example
+**[NWN_Launcher.bat](../master/latest/NWN_Launcher.bat):** Basic Launcher Example.
 
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
 
-**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*)
+**[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).
 
 **Tips:** 
 
