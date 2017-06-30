@@ -15,11 +15,10 @@ var sftp_password = "";
 var sftp_log_dir = "";
 var testmode = false;
 var logheadeader_color = "FFFFFF";
-
 var minimum_rows = 10;
+
 var process = require( "process" );
 var passed_arguments = process.argv.slice(2);
-
 
 function stopAndShowValidOptions () {
 	console.log('The available arguments are: ');
