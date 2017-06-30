@@ -70,7 +70,7 @@ If you play on a server with custom launchers (i.e. sinfarx.exe), you will need 
 
 **[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).
 
-**Tips:** 
+**Extra / Optional:** 
 
 - If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
 
