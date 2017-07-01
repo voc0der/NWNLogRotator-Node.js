@@ -7,11 +7,11 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 **Required Files:**
 
 - This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed.<br />
-- Place the latest version of [RavenLogRotator.js](../master/latest/RavenLogRotator.js) in **your** NWN Base directory.
+- Place the latest version of [RavenLogRotator.js](../master/latest/RavenLogRotator.js) in your NWN Base directory.
 
 **Enabling NWN Logging:**
 
-1) Go to C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\ or **your** NWN Base directory. 
+1) Go to C:\Program Files (x86)\Neverwinter Nights\ or **your** NWN Base directory. 
 
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
 
@@ -25,7 +25,7 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 
 2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
-cd C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\
+cd C:\Program Files (x86)\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
 ```batch
@@ -78,10 +78,10 @@ If you play on a server with custom launchers (i.e. sinfarx.exe), you will need 
 
 - Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
 ```batch
-start /w /d "C:\Program Files (x86)\GOG.com\Neverwinter Nights Diamond Edition\" hstart64.exe /noconsole "Sample_NWN_Launcher.bat"
+start /w /d "C:\Program Files (x86)\Neverwinter Nights\" hstart64.exe /noconsole "Sample_NWN_Launcher.bat"
 ```
 If you added hstart64.exe to your Windows\system32 folder you can call it from cmd like this;
 ```batch
-start hstart64.exe /noconsole "C:\Program Files (x86)\GOG.com\Neverwinter Nights Diamond Edition\Sample_NWN_Launcher.bat" 
+start hstart64.exe /noconsole "C:\Program Files (x86)\Neverwinter Nights\Sample_NWN_Launcher.bat" 
 ```
 Once it works, you can make a shortcut to that batch file. Make sure the shortcuts are configured to *Run as Administrator*.
