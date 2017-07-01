@@ -6,5 +6,7 @@ timeout /t 5 /nobreak > nul
 timeout /t 1 /nobreak > nul
 tasklist /fi "imagename eq nwmain.exe" |find ":" > nul
 if errorlevel 1 goto loop
+echo *** Neverwinter Nights Terminated ***
+echo *** Processing Logs ***
 node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:/DestinationWithNoSlashAtTheEnd" -h "mysftphostname" -l mysftpusername -k mysftppassword -g 22 -z "/mysftppath"
 exit
