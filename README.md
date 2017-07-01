@@ -13,9 +13,9 @@ The Neverwinter Nights Log Rotator is designed to parse, format, and colorize lo
 
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
 
-3) Start NWN, join a server, and spam a few chat lines through chat for the logger.  Close NWN.
+3) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
 
-4) Then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
+4) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
 **Testing RavenLogRotator:**
 
