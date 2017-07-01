@@ -1,11 +1,11 @@
 # NWN-Log-Rotator
-The Neverwinter Nights Log Rotator is designed to parse, format, and colorize logs so that they may be shared and re-read. The log rotator can also optionally upload remotely to sftp. With the batch file below along with this, it is easy to fully automate logging in NWN in a colorful way! A very basic example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/latest/advanced/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
+This Neverwinter Nights Log Rotator, RavenLogRotator, is designed to parse, format, and colorize logs so that they may be shared and re-read much easier. The log rotator can also optionally upload remotely to sftp. With help of the batch file below along with RavenLogRotator, it is easy to fully automate logging in NWN in a colorful way! Here is an example of this in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/latest/advanced/NWNLog_2016_08_26_001006.html" target="_blank">here</a>.
 <br />
 <br />
 **Required Files:**
 
-- This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed. It is a Javascript VM that helps this script run.<br />
-- Retrieve the latest [RavenLogRotator.js](../master/latest/RavenLogRotator.js) here on this repository and place it in **your** NWN Base directory.
+- This script requires <a href="https://nodejs.org/en/">Node.js</a> to be installed.<br />
+- Place the latest version of [RavenLogRotator.js](../master/latest/RavenLogRotator.js) in **your** NWN Base directory.
 
 **Enabling NWN Logging:**
 
