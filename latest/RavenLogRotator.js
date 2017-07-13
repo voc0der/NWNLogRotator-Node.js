@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 06/30/2017
-// Version 1.61
+// Date: 07/13/2017
+// Version 1.63
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var process = require( "process" );
@@ -9,7 +9,7 @@ var path = require( 'path' );
 var passed_arguments = process.argv.slice(2);
 var pwd = process.cwd().replace(/\\/g, "/");
 
-// [[ BASE VARIABLES ]] Hint: There are parameters you can pass, so you don't need to change these here!
+// base variables (flags control these)
 var server = "";
 var upload_file = false;
 var source = pwd + "/Logs/nwclientLog1.txt";
@@ -22,6 +22,7 @@ var sftp_log_dir = "";
 var testmode = false;
 var logheadeader_color = "FFFFFF";
 var minimum_rows = 10;
+var combat_text = true;
 
 function stopAndShowValidOptions () {
 	console.log('The available arguments are: ');
@@ -37,12 +38,13 @@ function stopAndShowValidOptions () {
 	console.log('-t | test mode, disable file write (true or false) | usage: -t true');
 	console.log('-c | color of server header | usage: -c 03FFFF');
 	console.log('-m | minimum lines before logging | usage: -m 10');
+	console.log('-f | show combat text | usage: -f false')
 	console.log("Invalid argument structure process was aborted.");
 	process.exit();
 }
 
-// [[ ARGUMENTS ]] 
-var args_array = ["s","u","p","d","h","l","k","g","z","t","c","m"];
+// arguments
+var args_array = ["s","u","p","d","h","l","k","g","z","t","c","m","f"];
 var flag = "";
 if(passed_arguments.toString().indexOf(',') > 0) {
 	var parameter_array = passed_arguments.toString().split(',');
@@ -107,9 +109,16 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 				}
 			} else if (flag == "c") {
 				logheadeader_color = parameter_array[i];
-			}
-			 else if (flag == "m") {
+			} else if (flag == "m") {
 				minimum_rows = parameter_array[i];
+			} else if (flag == "f") {
+				if(parameter_array[i] == "true") {
+					combat_text = true;
+				} else if(parameter_array[i] == "false") {
+					combat_text = false;
+				} else {
+					stopAndShowValidOptions();
+				}
 			}
 			flag = "";
 		} else {
@@ -120,7 +129,7 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 
 if(upload_file == true && (sftp_hostname == "" || sftp_username == "" || sftp_password == "" || sftp_port == "") ) stopAndShowValidOptions();
 
-// [[ Build Filename ]] e.g. NWNLog_2013_04_23_192504
+// filename (ex. NWNLog_2013_04_23_192504)
 var today = new Date();
 
 var monthStr = (today.getMonth() + 1).toString();
@@ -142,7 +151,7 @@ var dateString = today.getFullYear() + "_" + monthStr + "_" + dayStr + "_" + hou
 
 var fileName = "NWNLog_" + dateString + ".html";
 
-// [[ Build destination folder ]]
+// destination folder
 var destination = output_base_dir + "/" + server;  
 if (!fs.existsSync(destination)){
     fs.mkdirSync(destination);
@@ -155,30 +164,64 @@ fs.readFile(source, "utf8", function( error, data ) {
 		console.error( "Error reading source file.", error );
 		return;
 	}
-	// Init cap server name
 	var server_label = server;
 	server_label = server_label.toLowerCase().replace(/\b[a-z]/g, function(letter) {
 		return letter.toUpperCase();
 	});
+	if(server_label != "") server_label = server_label + " ";
 
-	var css = 	"<style>" +
-					".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
-					".logheader { color: #03FFFF; }" +
-					".default { color: #FFFFFF }" +
-					".timestamp { color: #B1A2BD; }" +
-					".actors { color: #8F7FFF; }" +
-					".tells { color: #0F0; }" +
-					".whispers { color: #808080; }" +
-					".emotes { color: #ffaed6; }" +
-				"</style>";
+	var css = 	"<head>" +
+					"<style>" +
+						".logbody { background-color: #000000; font-family: Tahoma, Geneva, sans-serif; color: #FFFFFF; }" +
+						".logheader { color: #03FFFF; }" +
+						".default { color: #FFFFFF }" +
+						".timestamp { color: #B1A2BD; }" +
+						".actors { color: #8F7FFF; }" +
+						".tells { color: #0F0; }" +
+						".whispers { color: #808080; }" +
+						".emotes { color: #ffaed6; }" +
+					"</style>" +
+				"</head>";
 
-	var logTitle = "<h4>[<span class='logheader'>" + server_label + " Log</span>]" 
+	var logTitle = "<h4>[<span class='logheader'>" + server_label + "Log</span>]" 
 			+ " <span class='actors'>Date/Time</span>: " + monthStr + '/' + dayStr + '/' + today.getFullYear() + ' ' + hourStr + ":" + minuteStr
 			+ "</h4>";
-	var preLog = "<html><body class='logbody'><span class='default'>";
+	var preLog = "<html>" + css + "<body class='logbody'><span class='default'>" + logTitle;
 	var postLog = "</span></body></html>";
 
-	var filteredLogs = css + preLog + logTitle + 
+	// combat text removal
+	if(combat_text == false) {
+		data = data
+		.replace(/.+?(?=.*)\*{1}hit\*{1}.*\s\:\s\(\d{1,}\s\+\s\d{1,}\s\=\s\d{1,}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)damages\s.*\:\s{1}\d{1,}\s{1}\({1}\d{1,}\s{1}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*\:{1}\s{1}Damage\s{1}[a-zA-Z]*\s{1}absorbs\s{1}.*\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}target concealed\:{1}.*\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}critical hit\*\s{1}\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)Immune\s{1}to\s{1}Critical\s{1}Hits\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}miss\*{1}.*\s\:\s\(\d{1,}\s\+\s\d{1,}\s\=\s\d{1,}\)\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}success\*{1}\s{1}\:{1}\s{1}\(\d{1,}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}failure\*{1}.*\s\:\s{1}\({1}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\:\s{1}Initiative\s{1}Roll\s{1}\:\s\d{1,}\s\:\s\(\d{1,}\s\+\s{1}\d{1,}\s{1}\={1}\s{1}\d{1,}\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\:{1}\s{1}Damage Immunity\s{1}absorbs.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*cast.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*uses.*\r\n/g, '')
+		.replace(/.+?(?=.*)[a-zA-Z]*\s{1}attempts\s{1}to\s{1}.*\:\s{1}.*\r\n/g, '')
+		.replace(/.+?(?=.*)[a-zA-Z]*\:{1}\s{1}Healed\s{1}\d{1,}\s{1}hit.*\r\n/g, '')
+		.replace(/.+?(?=.*)[a-zA-Z]*\:{1}\sImmune to Mind Affecting Spells\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}Dispel\s{1}Magic\s{1}\:{1}\s{1}[a-zA-z]*.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}Experience Points Gained\:{1}\s{1,}\d{1,}\r\n/g, '')
+		.replace(/.+?(?=.*)There are signs of recent fighting here...\*{1}\r\n/g, '')
+		.replace(/.+?(?=.*)Stale temporary properties detected, cleaning item\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}\[Check for loot\:{1}\s{1}\d{1,}.*\]{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}You.{1}ve reached your maximum level.\s{1}.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}Devastating Critical Hit!\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1,}Done resting\.{1}.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}You cannot target a creature you cannot see or do not have a line of sight to\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}Weapon equipped as a one-handed weapon.\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}Equipping this armor has disabled your monk abilities.\r\n/g, '');
+	}
+
+	var filteredLogs = preLog + 
 	data
 	// core format replacements
 	.replace(/\[CHAT WINDOW TEXT\] /g, '')
@@ -203,8 +246,14 @@ fs.readFile(source, "utf8", function( error, data ) {
 	.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
 	.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
 	.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
-	.replace(/.+?(?=.*)Experience Points Gained: [0-9]*\r\n/g, '')
+	.replace(/.+?(?=.*)This container is persistent.\r\n/g, '')
+	.replace(/.+?(?=.*)This container is full.\r\n/g, '')
+	.replace(/.+?(?=.*)You are too busy to barter now.\r\n/g, '')
+	.replace(/.+?(?=.*)Player not found.\r\n/g, '')
+	.replace(/.+?(?=.*)You cannot carry any more items, your inventory is full.\r\n/g, '')
+	.replace(/.+?(?=.*) This is a trash, its contents may be purged at anytime.\r\n/g, '')
 	.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
+	.replace(/.+?(?=.*)\-{1}\s{1}Your character has been saved\.{1}\s{1}\-{1}\r\n/g, '')
 	.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
 	// actors
 	.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
@@ -224,6 +273,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 		if(testmode == true) {
 			// display output in console
 			console.log(filteredLogs);
+      console.log('actors: ' + actorOccurences);
 		} else {
 			// write output to html
 			fs.writeFile(destination, filteredLogs, function(err) {
@@ -235,6 +285,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 	}
 });
 
+// sftp
 function uploadToSFTP() {
 	if(upload_file == true) {
 		var Client = require('ssh2-sftp-client');
@@ -245,7 +296,6 @@ function uploadToSFTP() {
 		} else {
 			log_path = log_path + "/" + fileName;
 		}
-		/* upload to sftp */
 		sftp.connect({
 			host: sftp_hostname,
 			port: sftp_port,
