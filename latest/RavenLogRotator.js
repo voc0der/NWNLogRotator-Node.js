@@ -1,6 +1,6 @@
 // Author: RaveN
 // Date: 07/13/2017
-// Version 1.63
+// Version 1.64
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var process = require( "process" );
@@ -200,7 +200,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)\*{1}critical hit\*\s{1}\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}resisted\*\s{1}\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)Immune\s{1}to\s{1}Critical\s{1}Hits\.{1}\r\n/g, '')
-		.replace(/.+?(?=.*)\*{1}miss\*{1}.*\s\:\s\(\d{1,}\s\+\s\d{1,}\s\=\s\d{1,}\)\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}miss\*{1}.*\s\:\s\(\d{1,}\s{1}.*\d{1,}\s\=\s\d{1,}\)\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}success\*{1}\s{1}\:{1}\s{1}\(\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}failure\*{1}.*\s\:\s{1}\({1}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\:\s{1}Initiative\s{1}Roll\s{1}\:\s\d{1,}\s\:\s\(\d{1,}\s\+\s{1}\d{1,}\s{1}\={1}\s{1}\d{1,}\){1}\r\n/g, '')
