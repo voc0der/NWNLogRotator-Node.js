@@ -279,7 +279,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 		if(testmode == true) {
 			// display output in console
 			console.log(filteredLogs);
-      console.log('actors: ' + actorOccurences);
+			console.log('actors: ' + actorOccurences);
 		} else {
 			// write output to html
 			fs.writeFile(destination, filteredLogs, function(err) {
