@@ -194,15 +194,19 @@ fs.readFile(source, "utf8", function( error, data ) {
 		data = data
 		.replace(/.+?(?=.*)\*{1}hit\*{1}.*\s\:\s\(\d{1,}\s\+\s\d{1,}\s\=\s\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)damages\s.*\:\s{1}\d{1,}\s{1}\({1}\d{1,}\s{1}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}parried\*{1}.*\({1}\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*\:{1}\s{1}Damage\s{1}[a-zA-Z]*\s{1}absorbs\s{1}.*\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}target concealed\:{1}.*\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}critical hit\*\s{1}\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
+		.replace(/.+?(?=.*)\*{1}resisted\*\s{1}\:{1}\s{1}\({1}\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)Immune\s{1}to\s{1}Critical\s{1}Hits\.{1}\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}miss\*{1}.*\s\:\s\(\d{1,}\s\+\s\d{1,}\s\=\s\d{1,}\)\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}success\*{1}\s{1}\:{1}\s{1}\(\d{1,}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\*{1}failure\*{1}.*\s\:\s{1}\({1}.*\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\:\s{1}Initiative\s{1}Roll\s{1}\:\s\d{1,}\s\:\s\(\d{1,}\s\+\s{1}\d{1,}\s{1}\={1}\s{1}\d{1,}\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\:{1}\s{1}Damage Immunity\s{1}absorbs.*\r\n/g, '')
+		.replace(/.+?(?=.*)\:{1}\s{1}Immune to Sneak Attacks\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\:{1}\s{1}Spell Level Absorption absorbs\s{1}\d{1,}.*\:{1}\s{1}\d{1,}.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*cast.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*uses.*\r\n/g, '')
 		.replace(/.+?(?=.*)[a-zA-Z]*\s{1}attempts\s{1}to\s{1}.*\:\s{1}.*\r\n/g, '')
@@ -216,8 +220,10 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)\s{1}You.{1}ve reached your maximum level.\s{1}.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Devastating Critical Hit!\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1,}Done resting\.{1}.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1,}You triggered a Trap!{1}.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}You cannot target a creature you cannot see or do not have a line of sight to\.{1}\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Weapon equipped as a one-handed weapon.\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}You cannot rest so soon after exerting yourself.\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Equipping this armor has disabled your monk abilities.\r\n/g, '');
 	}
 
@@ -258,7 +264,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 	// actors
 	.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
 	// tells
-	.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells">$1:$2</span>')
+	.replace(/:\s?<\/span>\s?(\[Tell])(.*.*)/g, '</span><span class="tells"> $1:$2</span>')
 	// whispers 
 	.replace(/:\s?<\/span>\s?(\[Whisper])(.*.*)/g, '</span><span class="whispers"> $1:$2</span>')
 	// emotes 
