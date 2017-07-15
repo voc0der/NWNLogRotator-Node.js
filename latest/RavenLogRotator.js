@@ -24,6 +24,7 @@ var testmode = false;
 var logheadeader_color = "FFFFFF";
 var minimum_rows = 10;
 var combat_text = true;
+var event_text = false;
 
 // check nwnplayer.ini for chat logging
 if (fs.existsSync(nwnplayer)){
@@ -52,13 +53,14 @@ function stopAndShowValidOptions () {
 	console.log('-t | test mode, disable file write (true or false) | usage: -t true');
 	console.log('-c | color of server header | usage: -c 03FFFF');
 	console.log('-m | minimum lines before logging | usage: -m 10');
-	console.log('-f | show combat text | usage: -f false')
+	console.log('-f | show combat text | usage: -f false');
+	console.log('-e | show event text (mostly spam) | usage: -e true')
 	console.log("Invalid argument structure process was aborted.");
 	process.exit();
 }
 
 // arguments
-var args_array = ["s","u","p","d","h","l","k","g","z","t","c","m","f"];
+var args_array = ["s","u","p","d","h","l","k","g","z","t","c","m","f","e"];
 var flag = "";
 if(passed_arguments.toString().indexOf(',') > 0) {
 	var parameter_array = passed_arguments.toString().split(',');
@@ -130,6 +132,14 @@ if(passed_arguments.toString().indexOf(',') > 0) {
 					combat_text = true;
 				} else if(parameter_array[i] == "false") {
 					combat_text = false;
+				} else {
+					stopAndShowValidOptions();
+				}
+			} else if (flag == "e") {
+				if(parameter_array[i] == "true") {
+					event_text = true;
+				} else if(parameter_array[i] == "false") {
+					event_text = false;
 				} else {
 					stopAndShowValidOptions();
 				}
@@ -244,40 +254,43 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)\s{1}No resting is allowed in this area.\r\n/g, '');
 	}
 
-	var filteredLogs = preLog + 
-	data
+	// event text removal
+	if(event_text == false) {
+		data = data
+		.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
+		.replace(/.+?(?=.*)Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+		.replace(/Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
+		.replace(/.+?(?=.*)No Monk\/Shield AC Bonus:\s?\+{1}[0-9]*.*\r\n/g, '')
+		.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
+		.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
+		.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
+		.replace(/.+?(?=.*)has left as a game master..\r\n/g, '')
+		.replace(/.+?(?=.*)has joined as a game master..\r\n/g, '')
+		.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
+		.replace(/.+?(?=.*)You are now in a No PVP area.\r\n/g, '')
+		.replace(/.+?(?=.*)Resting.\r\n/g, '')
+		.replace(/.+?(?=.*)Cancelled Rest.\r\n/g, '')
+		.replace(/.+?(?=.*)You used a key.\r\n/g, '')
+		.replace(/.+?(?=.*)Equipped item swapped out.\r\n/g, '')
+		.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
+		.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
+		.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
+		.replace(/.+?(?=.*)This container is persistent.\r\n/g, '')
+		.replace(/.+?(?=.*)This container is full.\r\n/g, '')
+		.replace(/.+?(?=.*)You are too busy to barter now.\r\n/g, '')
+		.replace(/.+?(?=.*)Player not found.\r\n/g, '')
+		.replace(/.+?(?=.*)You cannot carry any more items, your inventory is full.\r\n/g, '')
+		.replace(/.+?(?=.*)This is a trash, its contents may be purged at anytime.\r\n/g, '')
+		.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
+		.replace(/.+?(?=.*)\-{1}\s{1}Your character has been saved\.{1}\s{1}\-{1}\r\n/g, '')
+		.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
+	}
+
+	var filteredLogs = preLog + data
 	// core format replacements
 	.replace(/\[CHAT WINDOW TEXT\] /g, '')
 	.replace(/\[{1}[A-z]{3}\s[A-z]{3}\s[0-9]{2}\s/g, '<span class="timestamp">[')
 	.replace(/:[0-9]*]{1}/g, ']</span>')
-	// additional patterns
-	.replace(/.+?(?=.*).{1}Event.{1} .*\r\n/g, '')
-	.replace(/.+?(?=.*)Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-	.replace(/Minimum Tumble AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-	.replace(/.+?(?=.*)No Monk\/Shield AC Bonus:\s?\+{1}[0-9]*\r\n/g, '')
-	.replace(/.+?(?=.*)You are light sensitive!\r\n/g, '')
-	.replace(/.+?(?=.*)has left as a player..\r\n/g, '')
-	.replace(/.+?(?=.*)has joined as a player..\r\n/g, '')
-	.replace(/.+?(?=.*)has left as a game master..\r\n/g, '')
-	.replace(/.+?(?=.*)has joined as a game master..\r\n/g, '')
-	.replace(/.+?(?=.*)You are now in a Party PVP area.\r\n/g, '')
-	.replace(/.+?(?=.*)You are now in a No PVP area.\r\n/g, '')
-	.replace(/.+?(?=.*)Resting.\r\n/g, '')
-	.replace(/.+?(?=.*)Cancelled Rest.\r\n/g, '')
-	.replace(/.+?(?=.*)You used a key.\r\n/g, '')
-	.replace(/.+?(?=.*)Equipped item swapped out.\r\n/g, '')
-	.replace(/.+?(?=.*)You are portalling, you can't do anything right now.\r\n/g, '')
-	.replace(/.+?(?=.*)Unknown Speaker: You are being moved to your last location, please wait...\r\n/g, '')
-	.replace(/.+?(?=.*)You are entering a new area!\r\n/g, '')
-	.replace(/.+?(?=.*)This container is persistent.\r\n/g, '')
-	.replace(/.+?(?=.*)This container is full.\r\n/g, '')
-	.replace(/.+?(?=.*)You are too busy to barter now.\r\n/g, '')
-	.replace(/.+?(?=.*)Player not found.\r\n/g, '')
-	.replace(/.+?(?=.*)You cannot carry any more items, your inventory is full.\r\n/g, '')
-	.replace(/.+?(?=.*) This is a trash, its contents may be purged at anytime.\r\n/g, '')
-	.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
-	.replace(/.+?(?=.*)\-{1}\s{1}Your character has been saved\.{1}\s{1}\-{1}\r\n/g, '')
-	.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
 	// actors
 	.replace(/\]<\/span>((...).*: )/g, ']</span><span class="actors">$1</span>')
 	// tells
@@ -287,8 +300,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 	// emotes 
 	.replace(/(\*.*\*)/g, '<span class="emotes">$1</span>')
 	// html formatting
-	.replace(/\r\n/g,'<br />');
-	filteredLogs = filteredLogs + postLog;
+	.replace(/\r\n/g,'<br />') + postLog;
 
 	var actorOccurences = (filteredLogs.match(/<span class=\"actors\">/g) || []).length;
 

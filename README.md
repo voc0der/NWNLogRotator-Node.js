@@ -49,6 +49,7 @@ The following flags are all optional, but may be changed to specify your configu
 | -c | server name color | "FFFFFF" | -c 03FFFF |
 | -m | minimum rows to log | "10" | -m 25 |
 | -f | log combat text | true | -f false |
+| -e | event text (spam) | false | -e true |
 
 **Important:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
 ```batch
