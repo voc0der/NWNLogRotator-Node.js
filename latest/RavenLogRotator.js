@@ -220,12 +220,14 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)\:\s{1}Initiative\s{1}Roll\s{1}\:\s\d{1,}\s\:\s\(\d{1,}\s\+\s{1}\d{1,}\s{1}\={1}\s{1}\d{1,}\){1}\r\n/g, '')
 		.replace(/.+?(?=.*)\:{1}\s{1}Damage Immunity\s{1}absorbs.*\r\n/g, '')
 		.replace(/.+?(?=.*)\:{1}\s{1}Immune to Sneak Attacks\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)\:{1}\s{1}Immune to Negative Levels\.{1}\r\n/g, '')
 		.replace(/.+?(?=.*)\:{1}\s{1}Spell Level Absorption absorbs\s{1}\d{1,}.*\:{1}\s{1}\d{1,}.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*cast.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*uses.*\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}[a-zA-Z]*enables.*\r\n/g, '')
 		.replace(/.+?(?=.*)[a-zA-Z]*\s{1}attempts\s{1}to\s{1}.*\:\s{1}.*\r\n/g, '')
 		.replace(/.+?(?=.*)[a-zA-Z]*\:{1}\s{1}Healed\s{1}\d{1,}\s{1}hit.*\r\n/g, '')
-		.replace(/.+?(?=.*)[a-zA-Z]*\:{1}\sImmune to Mind Affecting Spells\.{1}\r\n/g, '')
+		.replace(/.+?(?=.*)[a-zA-Z]*\:{1}\sImmune to [a-zA-Z]*.*\.{1}\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Dispel\s{1}Magic\s{1}\:{1}\s{1}[a-zA-z]*.*\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Experience Points Gained\:{1}\s{1,}\d{1,}\r\n/g, '')
 		.replace(/.+?(?=.*)There are signs of recent fighting here...\*{1}\r\n/g, '')
@@ -238,7 +240,8 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)\s{1}You cannot target a creature you cannot see or do not have a line of sight to\.{1}\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}Weapon equipped as a one-handed weapon.\r\n/g, '')
 		.replace(/.+?(?=.*)\s{1}You cannot rest so soon after exerting yourself.\r\n/g, '')
-		.replace(/.+?(?=.*)\s{1}Equipping this armor has disabled your monk abilities.\r\n/g, '');
+		.replace(/.+?(?=.*)\s{1}Equipping this armor has disabled your monk abilities.\r\n/g, '')
+		.replace(/.+?(?=.*)\s{1}No resting is allowed in this area.\r\n/g, '');
 	}
 
 	var filteredLogs = preLog + 
