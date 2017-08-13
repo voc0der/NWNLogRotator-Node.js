@@ -1,5 +1,5 @@
 // Author: RaveN
-// Date: 07/14/2017
+// Date: 08/13/2017
 // Version 1.66
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
