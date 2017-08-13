@@ -55,7 +55,7 @@ The following flags are all optional, but may be changed to specify your configu
 ```batch
 npm install ssh2-sftp-client
 ```
-If this command fails, try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
+If this command fails, try installing it with the -g (global flag) or try opening the command prompt as administrator and trying again. To accomplish this, right click the cmd.exe shortcut in the start menu and select *Run As Administrator*.
 
 **Advanced Flag Usage Example:**
 
@@ -75,8 +75,6 @@ If you play on a server with custom launchers (i.e. sinfarx.exe), you will need 
 **[NWN_Launcher_Sinfar.bat](../master/latest/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).
 
 **Extra / Optional:** 
-
-- If you play on multiple servers, it's easier to make a launcher for each, and then a shortcut on the desktop. Make sure the shortcuts are configured to *Run as Administrator*.
 
 - Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
 ```batch

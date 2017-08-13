@@ -1,6 +1,6 @@
 // Author: RaveN
 // Date: 07/14/2017
-// Version 1.65
+// Version 1.66
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var process = require( "process" );
@@ -284,6 +284,7 @@ fs.readFile(source, "utf8", function( error, data ) {
 		.replace(/.+?(?=.*)Armor\/Shield Applies: Skill .*\r\n/g, '')
 		.replace(/.+?(?=.*)\-{1}\s{1}Your character has been saved\.{1}\s{1}\-{1}\r\n/g, '')
 		.replace(/.+?(?=.*)New Value: [0-9]*\r\n/g, '')
+		.replace(/.+?(?=.*)Quick bar\s{1}.*loaded in.*\r\n/g, '')
 	}
 
 	var filteredLogs = preLog + data
