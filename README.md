@@ -17,7 +17,7 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 C:\Program Files (x86)\Neverwinter Nights\
 ```
 ```
-# For Neverwinter Nights: Enhanced Edition:
+# For Steam Neverwinter Nights: Enhanced Edition:
 C:\Users\<user>\Documents\Neverwinter Nights\ 
 ```
 
@@ -36,7 +36,11 @@ ClientEntireChatWindowLogging = 1
 1) Open a command prompt in windows.
 2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
+# Default Neverwinter Nights 1.69:
 cd C:\Program Files (x86)\Neverwinter Nights\
+
+# For Steam Neverwinter Nights: Enhanced Edition:
+cd C:\Users\<user>\Documents\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
 ```batch
