@@ -11,13 +11,17 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 
 **Enabling NWN Logging:**
 
-For Neverwinter Nights 1.69
-1) Go to C:\Program Files (x86)\Neverwinter Nights\ or **your** NWN Base directory. 
-2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
-
+1) Navigate in Windows Explorer to **your** base Neverwinter Nights directory.
+Default Neverwinter Nights 1.69
+C:\Program Files (x86)\Neverwinter Nights\
 For Neverwinter Nights: Enhanced Edition:
-1) C:\Users\<user>\Documents\Neverwinter Nights\ or **your** NWN Base directory. 
-2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
+C:\Users\<user>\Documents\Neverwinter Nights\ 
+
+2) Open nwnplayer.ini and ensure the following setting is there and the right value.
+```
+[Game Options]
+ClientEntireChatWindowLogging = 1
+```
 
 **Test NWN Logging:**
 1) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
