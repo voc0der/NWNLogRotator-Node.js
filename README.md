@@ -32,11 +32,11 @@ cd C:\Program Files (x86)\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
 ```batch
-// nwn 1.69
+# nwn 1.69
 node RavenLogRotator 
 
-// nwn enhaced edition: -p is required
-// steam default usage example below (remember to replace <user> with your windows user)
+# nwn enhaced edition: -p is required
+# steam default usage example below (remember to replace <user> with your windows user)
 node RavenLogRotator -p "C:/Users/<user>/Documents/Neverwinter Nights/logs/nwClientLog1.txt"
 ```
 The following flags are available for use to configure RavenLogRotator.
