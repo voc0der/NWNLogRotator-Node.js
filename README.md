@@ -12,12 +12,12 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 **Enabling NWN Logging:**
 
 1) Navigate in Windows Explorer to **your** base Neverwinter Nights directory.<br />
-Default Neverwinter Nights 1.69
 ```
+# Default Neverwinter Nights 1.69
 C:\Program Files (x86)\Neverwinter Nights\
 ```
-For Neverwinter Nights: Enhanced Edition:
 ```
+# For Neverwinter Nights: Enhanced Edition:
 C:\Users\<user>\Documents\Neverwinter Nights\ 
 ```
 
