@@ -17,7 +17,7 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 C:\Program Files (x86)\Neverwinter Nights\
 ```
 ```
-# For Steam Neverwinter Nights: Enhanced Edition:
+# Steam Neverwinter Nights: Enhanced Edition:
 C:\Users\<user>\Documents\Neverwinter Nights\ 
 ```
 
@@ -39,7 +39,7 @@ ClientEntireChatWindowLogging = 1
 # Default Neverwinter Nights 1.69:
 cd C:\Program Files (x86)\Neverwinter Nights\
 
-# For Steam Neverwinter Nights: Enhanced Edition:
+# Steam Neverwinter Nights: Enhanced Edition:
 cd C:\Users\<user>\Documents\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
@@ -48,7 +48,7 @@ cd C:\Users\<user>\Documents\Neverwinter Nights\
 node RavenLogRotator 
 
 # nwn enhaced edition: -p is required
-# steam default usage example below (remember to replace <user> with your windows user)
+# steam default usage example below (change <user> to your windows user)
 node RavenLogRotator -p "C:/Users/<user>/Documents/Neverwinter Nights/logs/nwClientLog1.txt"
 ```
 The following flags are available for use to configure RavenLogRotator.
