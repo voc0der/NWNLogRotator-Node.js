@@ -13,7 +13,7 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 
 1) Navigate in Windows Explorer to **your** base Neverwinter Nights directory.<br />
 ```
-# Default Neverwinter Nights 1.69
+# Default Neverwinter Nights 1.69:
 C:\Program Files (x86)\Neverwinter Nights\
 ```
 ```
@@ -33,7 +33,7 @@ ClientEntireChatWindowLogging = 1
 
 **Testing RavenLogRotator:**
 
-1) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
+1) Open a command prompt in windows.
 2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
 cd C:\Program Files (x86)\Neverwinter Nights\
