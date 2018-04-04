@@ -31,7 +31,7 @@ ClientEntireChatWindowLogging = 1
 1) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
 2) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
-**Testing RavenLogRotator:**
+**Test RavenLogRotator:**
 
 1) Open a command prompt in windows.
 2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
@@ -44,14 +44,14 @@ cd C:\Users\<user>\Documents\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
 ```batch
-# nwn 1.69
+# Neverwinter Nights 1.69:
 node RavenLogRotator 
 
-# nwn enhaced edition: -p is required
-# steam default usage example below (change <user> to your windows user)
+# Neverwinter Nights: Enhanced Edition: -p is required
+# Steam default usage example below (change <user> to your windows user)
 node RavenLogRotator -p "C:/Users/<user>/Documents/Neverwinter Nights/logs/nwClientLog1.txt"
 ```
-The following flags are available for use to configure RavenLogRotator.
+The following flags are available for use to further configure RavenLogRotator.
 
 | Flag  | Description | Default | Usage | Required for EE |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
