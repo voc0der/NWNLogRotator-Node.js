@@ -1,6 +1,6 @@
 // Author: RaveN
-// Date: 08/13/2017
-// Version 1.66
+// Date: 04/04/2018
+// Version 1.67
 // Purpose: NodeJS Neverwinter Nights Log rotator, formatter, and trimmer, and now uploader!
 
 var process = require( "process" );
@@ -25,19 +25,6 @@ var logheadeader_color = "FFFFFF";
 var minimum_rows = 10;
 var combat_text = true;
 var event_text = false;
-
-// check nwnplayer.ini for chat logging
-if (fs.existsSync(nwnplayer)){
-	fs.readFile(nwnplayer, "utf8", function( error, data ) {
-		if( error ) {
-			console.error( "Error reading nwnplayer.ini", error );
-			return;
-		}
-		if(data.match(/ClientEntireChatWindowLogging\s?={1}\s?0{1}.*/g) != null) {
-			console.log('WARNING: The Neverwinter Nights installed on this system has not yet been configured to enable text logging.')
-		}
-	});
-}
 
 function stopAndShowValidOptions () {
 	console.log('The available arguments are: ');
