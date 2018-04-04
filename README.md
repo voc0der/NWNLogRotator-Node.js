@@ -14,14 +14,14 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 For Neverwinter Nights 1.69
 1) Go to C:\Program Files (x86)\Neverwinter Nights\ or **your** NWN Base directory. 
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
-3) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
-4) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
 For Neverwinter Nights: Enhanced Edition:
 1) C:\Users\<user>\Documents\Neverwinter Nights\ or **your** NWN Base directory. 
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
-3) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
-4) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
+
+**Test NWN Logging:**
+1) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
+2) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
 **Testing RavenLogRotator:**
 
