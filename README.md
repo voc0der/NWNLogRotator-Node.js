@@ -11,45 +11,52 @@ With help of the batch file below along with RavenLogRotator, it is easy to full
 
 **Enabling NWN Logging:**
 
+For Neverwinter Nights 1.69
 1) Go to C:\Program Files (x86)\Neverwinter Nights\ or **your** NWN Base directory. 
-
 2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
-
 3) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
+4) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
+For Neverwinter Nights: Enhanced Edition:
+1) C:\Users\<user>\Documents\Neverwinter Nights\ or **your** NWN Base directory. 
+2) Open nwnplayer.ini and ensure that ClientEntireChatWindowLogging = 1 under "[Game Options]".
+3) Start NWN, join a server, and spam a few about two dozen lines through chat for the logger.
 4) Close NWN, then in your NWN base directory go to /Logs and ensure nwclientLog1.txt exists and looks correct.
 
 **Testing RavenLogRotator:**
 
 1) Open a command prompt (Open the Start Menu, then click "Run...". In the dialog box, type "cmd" then hit enter).
-
 2) Navigate to the path of **your** NWN install in the command prompt (cmd.exe):
 ```batch
 cd C:\Program Files (x86)\Neverwinter Nights\
 ```
 3) Try calling RavenLogRotator in node.
 ```batch
+// for nwn 1.69
 node RavenLogRotator 
+
+// for nwn enhaced edition -p is required
+// example: steam default, remember to replace <user> with your windows user.
+node RavenLogRotator -p "C:/Users/<user>/Documents/Neverwinter Nights/logs/nwClientLog1.txt"
 ```
+The following flags are available for use to configure RavenLogRotator.
 
-The following flags are all optional, but may be changed to specify your configuration:
-
-| Flag  | Description | Default | Usage |
-| ------------- | ------------- | ------------- | ------------- |
-| -s | nwn server name | "" | -s sinfar |
-| -u | upload to sftp | false | -u true |
-| -p | path to log | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" |
-| -d | log destination | "/Logs" | -p "C:/nwnlogs/" |
-| -h | sftp hostname | "" | -h host.sftphostname.com |
-| -l | sftp username | "" | -l mysftpusername |
-| -k | sftp password | "" | -k mysftppassword |
-| -g | sftp port | "" | -g 22 |
-| -z | sftp directory| "" | -z "/nwnlogs" |
-| -t | test only | false | -t true |
-| -c | server name color | "FFFFFF" | -c 03FFFF |
-| -m | minimum rows to log | "10" | -m 25 |
-| -f | log combat text | true | -f false |
-| -e | event text (spam) | false | -e true |
+| Flag  | Description | Default | Usage | Required for EE |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| -s | nwn server name | "" | -s sinfar | no |
+| -u | upload to sftp | false | -u true | no |
+| -p | path to log | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" | yes |
+| -d | log destination | "/Logs" | -p "C:/nwnlogs/" | no |
+| -h | sftp hostname | "" | -h host.sftphostname.com | no |
+| -l | sftp username | "" | -l mysftpusername | no |
+| -k | sftp password | "" | -k mysftppassword | no |
+| -g | sftp port | "" | -g 22 | no |
+| -z | sftp directory| "" | -z "/nwnlogs" | no |
+| -t | test only | false | -t true | no |
+| -c | server name color | "FFFFFF" | -c 03FFFF | no |
+| -m | minimum rows to log | "10" | -m 25 | no |
+| -f | log combat text | true | -f false | no |
+| -e | event text (spam) | false | -e true | no |
 
 **Important:** Only if you ***are*** using using sftp enter this line to install ssh-sftp-client from the node package manager (npm).
 ```batch
