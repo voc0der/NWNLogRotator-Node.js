@@ -1,2 +1,3 @@
 ﻿* linguist-vendored
 *.js linguist-vendored=false
+output/* linguist-documentation
