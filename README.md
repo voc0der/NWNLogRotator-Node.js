@@ -92,15 +92,3 @@ Repeat running it, changing flags and their values until you reach the desired o
 If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
 
 **[NWN_Launcher_Sinfar.bat](../master/launchers/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).
-
-**Extra / Optional:** 
-
-- Want to *hide* the command prompt in your shortcut? Easy! Download <a href="http://www.ntwind.com/blog/hstart-x64.html">hstart or hstart64</a> and unzip the exe in your NWN Base Directory. Once it's there, create a starter batch file.. that calls the Sample_NWN_Launcher.bat from above using the hstart to make it hidden. 
-```batch
-start /w /d "C:\Program Files (x86)\Neverwinter Nights\" hstart64.exe /noconsole "Sample_NWN_Launcher.bat"
-```
-If you added hstart64.exe to your Windows\system32 folder you can call it from cmd like this;
-```batch
-start hstart64.exe /noconsole "C:\Program Files (x86)\Neverwinter Nights\Sample_NWN_Launcher.bat" 
-```
-Once it works, you can make a shortcut to that batch file. Make sure the shortcuts are configured to *Run as Administrator*.
