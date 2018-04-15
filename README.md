@@ -85,7 +85,9 @@ node RavenLogRotator -s servername -u true -p "C:/Source/nwClientLog.txt" -d "C:
 
 Repeat running it, changing flags and their values until you reach the desired operation. If was successful, it will create a .html file both in the destination (-d) and if you chose to upload in the sftp zone (-z).
 
-**Automate Logging when playing NWN:** Place in NWN base directory.
+**Automate Logging when playing NWN:** 
+
+Place the following bat file in the NWN base directory and modify it to your specifications.
 
 **[NWN_Launcher.bat](../master/launchers/NWN_Launcher.bat):** Basic Launcher Example.
 
