@@ -55,7 +55,7 @@ The following flags are available for use to further configure RavenLogRotator.
 
 | Flag  | Description | Default | Usage | Required for EE |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-| -s | nwn server name | "" | -s sinfar | no |
+| -s | nwn server name | "" | -s servername | no |
 | -u | upload to sftp | false | -u true | no |
 | -p | path to log | "/Logs/nwclientLog1.txt" | -p "C:/nwnlogs/nwClientLog1.txt" | yes |
 | -d | log destination | "/Logs" | -p "C:/nwnlogs/" | no |
@@ -91,6 +91,6 @@ Place the following bat file in the NWN base directory and modify it to your spe
 
 **[NWN_Launcher.bat](../master/launchers/NWN_Launcher.bat):** Basic Launcher Example.
 
-If you play on a server with custom launchers (i.e. sinfarx.exe), you will need to do something a little different. 
+If you play on a server with custom launchers, you will need to do something a little different. 
 
-**[NWN_Launcher_Sinfar.bat](../master/launchers/NWN_Launcher_Sinfar.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).
+**[NWN_With_Launcher.bat](../master/launchers/NWN_With_Launcher.bat):** Server with Launcher Example (Requires to be *Run as Administrator*).

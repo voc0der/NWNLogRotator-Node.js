@@ -1,6 +1,6 @@
 @echo off
 echo *** Launching Server ***
-start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" sinfarx.exe +connect play.sinfar.net
+start /w /d "C:\Program Files (x86)\GOG\Neverwinter Nights Diamond Edition\" customlauncher.exe +connect 1.1.1.1:5121
 timeout /t 5 /nobreak > nul
 :loop
 timeout /t 1 /nobreak > nul
