@@ -1,7 +1,7 @@
 # NWN-Log-Rotator
 This Neverwinter Nights Log Rotator, RavenLogRotator, is designed to parse, format, and colorize logs so that they may be shared and re-read much easier. The log rotator can also optionally upload remotely to sftp. It is easily able to be used with either Neverwinter Nights 1.69 or the Enhanced Edition.
 
-With help of the batch file below along with RavenLogRotator, it is easy to fully automate logging in NWN in a colorful way! An example of RavenLogRotator in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/output/NWNLog_2018_03_31_210252.html" target="_blank">here</a>.
+With help of the batch file below along with RavenLogRotator, it is easy to fully automate logging in NWN in a colorful way! An example of RavenLogRotator in action is <a href="http://htmlpreview.github.io/?https://github.com/ravenmyst/NWN-Log-Rotator/blob/master/output/NWNLogExample.html" target="_blank">here</a>.
 <br />
 <br />
 **Required Files:**
