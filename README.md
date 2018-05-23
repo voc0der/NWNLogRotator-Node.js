@@ -3,7 +3,7 @@ This Neverwinter Nights Log Rotator, RavenLogRotator, is designed to parse, form
 
 With help of the batch file below along with RavenLogRotator, it is easy to fully automate logging in NWN in a colorful way! 
 
-<a href="https://ravenmyst.net/work/nwnlogrotator/" target="_blank">Click here to go to web version of NWN Log Rotator</a>.
+<a href="https://ravenmyst.net/work/nwnlogrotator/" target="_blank">Click here to go to web version of NWN Log Rotator or to see a live demo</a>.
 <br />
 <br />
 **Required Files:**
