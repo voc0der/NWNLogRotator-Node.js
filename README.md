@@ -1,7 +1,7 @@
 # Deprecation Notice 
 There is a newer version of this project being developed. This project will remain available indefinititely but receive limited updates.
 
-The new project is located here: https://github.com/ravenmyst/NWNLogRotator
+The new project is located here: https://github.com/notsigma/NWNLogRotator
 
 # NWN-Log-Rotator
 This Neverwinter Nights Log Rotator, RavenLogRotator, is designed to parse, format, and colorize logs so that they may be shared and re-read much easier. The log rotator can also optionally upload remotely to sftp. It is easily able to be used with either Neverwinter Nights 1.69 or the Enhanced Edition.
